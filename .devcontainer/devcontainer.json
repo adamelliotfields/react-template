@@ -8,7 +8,8 @@
     "vscode": {
       "extensions": [
         "biomejs.biome",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "tamasfe.even-better-toml"
       ]
     }
   },

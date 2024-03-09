@@ -1,12 +1,13 @@
-import containerQueriesPlugin from '@tailwindcss/container-queries'
-import headlessuiPlugin from '@headlessui/tailwindcss'
-import formsPlugin from '@tailwindcss/forms'
-import typographyPlugin from '@tailwindcss/typography'
+import headlessui from '@headlessui/tailwindcss'
+import containerQueries from '@tailwindcss/container-queries'
+import forms from '@tailwindcss/forms'
+import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 const config = {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
-  plugins: [containerQueriesPlugin, formsPlugin, headlessuiPlugin, typographyPlugin],
+  plugins: [containerQueries, forms, headlessui, typography],
   theme: { extend: {} }
 }
 

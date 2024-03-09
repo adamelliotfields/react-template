@@ -1,3 +1,7 @@
-.swc
-dist
-node_modules
+.swc/
+dist/
+node_modules/
+
+# secrets
+.env.local
+.env.*.local
