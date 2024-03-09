@@ -10,7 +10,7 @@ ENV PATH "/home/node/.bun/bin:${PATH}"
 USER 1000:1000
 
 # workdir
-WORKDIR /workspaces/template-react
+WORKDIR /workspaces/react-template
 
 # install bun
 RUN curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
