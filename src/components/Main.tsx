@@ -11,10 +11,8 @@ export default function Main() {
       <Switch>
         <Route path="/">
           <div className="flex flex-col items-center">
-            <h2 className="my-2 text-2xl font-bold tracking-wider">Counter</h2>
             <Counter />
             <hr className="w-full my-8 border-neutral-200 dark:border-neutral-800" />
-            <h2 className="mb-8 text-2xl font-bold tracking-wider">Lorem Ipsum</h2>
             <Lipsum />
           </div>
         </Route>

@@ -8,7 +8,7 @@ import Container from './Container'
 const themes = ['dark', 'light', 'system'] as const
 type Theme = (typeof themes)[number]
 
-const { VITE_HOMEPAGE } = import.meta.env
+const { VITE_HOMEPAGE, VITE_TITLE } = import.meta.env
 
 interface HeaderLinkType {
   href: string
@@ -72,7 +72,7 @@ export default function Header({ className, links, ...rest }: HeaderProps) {
       <Container className="h-14 items-center justify-between" border>
         {/* brand logo */}
         <a href={VITE_HOMEPAGE} className="font-bold font-serif text-xl tracking-wide">
-          Application
+          {VITE_TITLE}
         </a>
         {/* desktop links */}
         {hasLinks && (

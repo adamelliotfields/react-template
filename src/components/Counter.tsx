@@ -13,6 +13,7 @@ const Counter = () => {
 
   return (
     <>
+      <h2 className="mb-2 text-2xl font-bold tracking-wider">Counter</h2>
       <span className="mb-4 font-mono text-2xl" data-testid="count">
         {count}
       </span>
