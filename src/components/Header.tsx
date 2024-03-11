@@ -94,6 +94,7 @@ export default function Header({ className, links, ...rest }: HeaderProps) {
               className="flex md:hidden"
               aria-controls="mobile-menu"
               aria-expanded={open}
+              aria-label="Toggle menu"
             >
               {open ? (
                 <X className="text-neutral-900 dark:text-neutral-100" />
@@ -108,6 +109,7 @@ export default function Header({ className, links, ...rest }: HeaderProps) {
             onClick={() =>
               setTheme((oldTheme) => (oldTheme === 'light' ? 'system' : 'light'))
             }
+            aria-label="Toggle light mode"
           >
             <Sun
               className={
@@ -123,6 +125,7 @@ export default function Header({ className, links, ...rest }: HeaderProps) {
             onClick={() =>
               setTheme((oldTheme) => (oldTheme === 'dark' ? 'system' : 'dark'))
             }
+            aria-label="Toggle dark mode"
           >
             <Moon
               className={
