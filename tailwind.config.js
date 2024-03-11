@@ -1,5 +1,4 @@
-import headlessui from '@headlessui/tailwindcss'
-import containerQueries from '@tailwindcss/container-queries'
+import containers from '@tailwindcss/container-queries'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 
@@ -7,7 +6,7 @@ import typography from '@tailwindcss/typography'
 const config = {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
-  plugins: [containerQueries, forms, headlessui, typography],
+  plugins: [containers, forms, typography],
   theme: { extend: {} }
 }
 

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import { Moon, Sun } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import { type HTMLAttributes, useEffect, useState } from 'react'
+import { Link, useRoute } from 'wouter'
 
 import Container from './Container'
 
@@ -9,8 +10,24 @@ type Theme = (typeof themes)[number]
 
 const { VITE_HOMEPAGE } = import.meta.env
 
-export default function Header({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
+interface HeaderLinkType {
+  href: string
+  children: string
+}
+
+export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+  links?: HeaderLinkType[]
+}
+
+export default function Header({ className, links, ...rest }: HeaderProps) {
   const [theme, setTheme] = useState<Theme | null>(null)
+  const [open, setOpen] = useState(false)
+
+  const hasLinks = Array.isArray(links) && links.length > 0
+
+  const toggleMenu = () => {
+    setOpen(!open)
+  }
 
   // set the data-theme attribute when `theme` changes
   useEffect(() => {
@@ -25,9 +42,6 @@ export default function Header({ className, ...rest }: HTMLAttributes<HTMLDivEle
   }, [theme])
 
   // listen for changes to LocalStorage
-  // any changes trigger calls to `setTheme`, which triggers the above side-effect
-  // the DOM mutation observer in theme.js then updates LocalStorage
-  // if the theme is the same, nothing happens
   useEffect(() => {
     const handler = (): void => {
       let dark = null
@@ -49,21 +63,46 @@ export default function Header({ className, ...rest }: HTMLAttributes<HTMLDivEle
   return (
     <header
       className={clsx(
-        'border-b sticky top-0 bg-neutral-50 border-neutral-300 dark:bg-neutral-950 dark:border-neutral-700',
+        'border-b sticky top-0 bg-neutral-50 border-neutral-300',
+        'dark:bg-neutral-950 dark:border-neutral-700',
         className
       )}
       {...rest}
     >
       <Container className="h-14 items-center justify-between" border>
-        <a
-          href={VITE_HOMEPAGE}
-          className="font-extrabold text-xl tracking-wide"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          App
+        {/* brand logo */}
+        <a href={VITE_HOMEPAGE} className="font-bold font-serif text-xl tracking-wide">
+          Application
         </a>
+        {/* desktop links */}
+        {hasLinks && (
+          <div className="hidden md:flex md:space-x-4 md:mr-16">
+            {links.map(({ children, href }) => (
+              <HeaderLink key={href} href={href}>
+                {children}
+              </HeaderLink>
+            ))}
+          </div>
+        )}
+        {/* icon buttons */}
         <div className="flex items-center space-x-4">
+          {/* mobile menu toggle button */}
+          {hasLinks && (
+            <button
+              type="button"
+              onClick={toggleMenu}
+              className="flex md:hidden"
+              aria-controls="mobile-menu"
+              aria-expanded={open}
+            >
+              {open ? (
+                <X className="text-neutral-900 dark:text-neutral-100" />
+              ) : (
+                <Menu className="text-neutral-900 dark:text-neutral-100" />
+              )}
+            </button>
+          )}
+          {/* light/system theme toggle */}
           <button
             type="button"
             onClick={() =>
@@ -78,6 +117,7 @@ export default function Header({ className, ...rest }: HTMLAttributes<HTMLDivEle
               }
             />
           </button>
+          {/* dark/system theme toggle */}
           <button
             type="button"
             onClick={() =>
@@ -94,6 +134,36 @@ export default function Header({ className, ...rest }: HTMLAttributes<HTMLDivEle
           </button>
         </div>
       </Container>
+      {/* mobile menu */}
+      {hasLinks && (
+        <div className={clsx('md:hidden', open ? 'block' : 'hidden')} id="mobile-menu">
+          <div className="flex flex-col space-y-2 px-4 pb-4">
+            {links.map(({ children, href }) => (
+              <HeaderLink key={href} href={href}>
+                {children}
+              </HeaderLink>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
+  )
+}
+
+function HeaderLink({ href, children }: { href: string; children: string }) {
+  const [isActive] = useRoute(href)
+  return (
+    <Link
+      to={href}
+      className={clsx(
+        'font-medium',
+        isActive
+          ? 'text-neutral-900 dark:text-neutral-100'
+          : 'text-neutral-400 dark:text-neutral-600'
+      )}
+      aria-current={isActive ? 'page' : undefined}
+    >
+      {children}
+    </Link>
   )
 }
