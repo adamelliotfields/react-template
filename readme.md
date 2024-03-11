@@ -1,5 +1,8 @@
 # react-template
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/adamelliotfields/react-template?devcontainer_path=.devcontainer/devcontainer.json&machine=basicLinux32gb)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://pr.new/adamelliotfields/react-template)
+
 My personal template for React apps. Built for speed ⚡
 
 ## Features
@@ -8,7 +11,7 @@ My personal template for React apps. Built for speed ⚡
 - [**Vite**](https://github.com/vitejs/vite) for builds.
 - [**SWC**](https://github.com/vitejs/vite-plugin-react-swc) for hot reloading.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
-- [**Demo**](https://aef.me/react-template) with _TypeScript_, _Tailwind_, _HeadlessUI_, _Lucide_, _Jotai_, and _Wouter_.
+- [**Demo**](https://aef.me/react-template) with _TypeScript_, _Tailwind_, _Lucide_, _Jotai_, and _Wouter_.
 
 ## Usage
 
@@ -18,6 +21,10 @@ See [`package.json`](./package.json).
 # bun
 export PATH="${HOME}/.bun/bin:${PATH}"
 curl -fsSL https://bun.sh/install | bash
+
+# clone
+bunx degit adamelliotfields/react-template my-app
+cd my-app
 
 # install
 bun i
@@ -36,15 +43,23 @@ The `VITE_HOMEPAGE` variable is used to determine the base path, similar to how 
 
 I'm using the [`spa-github-pages`](https://github.com/rafgraph/spa-github-pages) technique to support client-side routing.
 
-In [`404.html`](./public/404.html), `pathSegmentsToKeep` is set to `1` to keep the base path. This means if your app is hosted at `you.github.io/your-app`, the base path will be `/your-app`, which is what you want.
+In [`404.html`](./public/404.html), `PATH_SEGMENTS` is set to `1` to keep the base path. This means if your app is hosted at `you.github.io/your-app`, the base path will be `/your-app`, which is what you want.
 
-If this is your root `github.io` page or you're using a custom domain, set `pathSegmentsToKeep` to `0`.
+If this is your root `github.io` page or you're using a custom domain, set `PATH_SEGMENTS` to `0`.
 
 For the actual routing, I use [`wouter`](https://github.com/molefrog/wouter).
 
+## Deployment
+
+Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.yml`](./.github/workflows/build.yml).
+
+## Utilities
+
+See [`clamp`](./src/lib/clamp.ts), [`debounce`](./src/lib/debounce.ts), [`formatDate`](./src/lib/format-date.ts), [`random`](./src/lib/random.ts), [`range`](./src/lib/range.ts), [`sleep`](./src/lib/sleep.ts), [`throttle`](./src/lib/throttle.ts), and [`uid`](./src/lib/uid.ts).
+
 ## Dark Mode
 
-A minified [`theme.js`](./public/theme.js) is in `index.html`. This script checks for a `dark` key in local storage with the following logic:
+A minified [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). This script checks for a `dark` key in local storage with the following logic:
   1. If `true`, then `data-theme` is set to `dark`.
   2. If `false`, then `data-theme` is set to `light`.
   3. If not defined, then `data-theme` is set to `system`.
@@ -87,7 +102,3 @@ useEffect(() => {
 ```
 
 Now to change the theme in your app, you'd just call `setTheme` somewhere. I know this might seem convoluted at first, but it works well and can be adapted to any framework. See [`Header.tsx`](./src/components/Header.tsx) for an example.
-
-## Deployment
-
-Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.yml`](./.github/workflows/build.yml).
