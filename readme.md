@@ -102,3 +102,18 @@ useEffect(() => {
 ```
 
 Now to change the theme in your app, you'd just call `setTheme` somewhere. I know this might seem convoluted at first, but it works well and can be adapted to any framework. See [`Header.tsx`](./src/components/Header.tsx) for an example.
+
+## Open Graph
+
+To generate [`og.png`](./public/og.png), I used Vercel's [OG Playground](https://og-playground.vercel.app).
+
+Set **size** to `1.9:1` and **Emoji Provider** to `Noto` and paste this template:
+
+```html
+<div tw="h-full w-full flex items-center justify-center bg-neutral-50">
+  <h2 tw="flex flex-col items-center text-neutral-900">
+    <span tw="text-9xl mb-4">🏠</span>
+    <span tw="text-8xl">Home</span>
+  </h2>
+</div>
+```
