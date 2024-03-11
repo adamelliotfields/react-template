@@ -14,8 +14,6 @@
   "dependencies": {
     "@biomejs/biome": "^1",
     "@happy-dom/global-registrator": "^13",
-    "@headlessui/react": "^1",
-    "@headlessui/tailwindcss": "^0",
     "@swc-jotai/react-refresh": "0.1.0",
     "@tailwindcss/container-queries": "^0",
     "@tailwindcss/forms": "^0",
@@ -31,7 +29,7 @@
     "autoprefixer": "^10",
     "clsx": "^2",
     "jotai": "^2",
-    "lucide-react": "^0",
+    "lucide-react": "0.344.0",
     "postcss": "^8",
     "react": "^18",
     "react-dom": "^18",
