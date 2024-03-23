@@ -14,12 +14,16 @@ const links = [
   { href: '/contact', children: 'Contact' }
 ]
 
-export default function App() {
+export interface AppProps {
+  border?: boolean
+}
+
+export default function App({ border = false }: AppProps) {
   return (
     <Router base={PROD && base !== '/' ? base : undefined}>
-      <Header links={links} />
-      <Main />
-      <Footer />
+      <Header border={border} links={links} />
+      <Main border={border} />
+      <Footer border={border} />
     </Router>
   )
 }

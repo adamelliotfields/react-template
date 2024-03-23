@@ -105,15 +105,19 @@ Now to change the theme in your app, you'd just call `setTheme` somewhere. I kno
 
 ## Open Graph
 
-To generate [`og.png`](./public/og.png), I used Vercel's [OG Playground](https://og-playground.vercel.app).
-
-Set **size** to `1.9:1` and **Emoji Provider** to `Noto` and paste this template:
+To generate [`og.png`](./public/og.png), I used Vercel's [OG Playground](https://og-playground.vercel.app):
+  1. Set **Size** to `1.9:1`
+  2. Set **Emoji Provider** to `Noto`
+  3. Paste this template:
 
 ```html
-<div tw="h-full w-full flex items-center justify-center bg-neutral-50">
-  <h2 tw="flex flex-col items-center text-neutral-900">
-    <span tw="text-9xl mb-4">🏠</span>
-    <span tw="text-8xl">Home</span>
-  </h2>
+<div tw="p-12 h-full w-full flex bg-neutral-50">
+  <div tw="p-6 w-full flex flex-col justify-end border-8 border-neutral-900">
+    <h2 tw="mb-0 flex flex-col text-neutral-900">
+      <span tw="-ml-2 text-8xl">⚛️</span>
+      <span tw="mt-6 text-6xl">React Template</span>
+    </h2>
+    <p tw="text-4xl">A starter kit with Vite, TypeScript, Tailwind, and more.</p>
+  </div>
 </div>
 ```
