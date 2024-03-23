@@ -9,6 +9,7 @@
       "extensions": [
         "biomejs.biome",
         "bradlc.vscode-tailwindcss",
+        "oven.bun-vscode",
         "tamasfe.even-better-toml"
       ]
     }
