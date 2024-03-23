@@ -1,44 +1,24 @@
 // use an environment variable to seed
 const { VITE_SEED } = import.meta.env
-const seed = Number(VITE_SEED) || Date.now()
-
-/*
- * 32-bit implementation of the Xorshift PRNG
- * https://en.wikipedia.org/wiki/Xorshift
- */
-class Xorshift32 {
-  private state: number
-
-  constructor() {
-    this.state = seed
-  }
-
-  public next(): number {
-    let x = this.state
-    x ^= x << 13
-    x ^= x >>> 17
-    x ^= x << 5
-    this.state = x
-
-    // divide by the max 32-bit signed integer to normalize to a float between -1 and 1
-    const m = 2 ** 31 - 1
-    return x / m
-  }
-
-  public reset(): void {
-    this.state = seed
-  }
-}
+const SEED = Number(VITE_SEED) || Date.now()
 
 /*
  * ZX81 implementation of the LCG PRNG
  * https://en.wikipedia.org/wiki/Linear_congruential_generator
  */
 class LCG {
+  private static instance: LCG
   private state: number
 
   constructor() {
-    this.state = seed
+    this.state = SEED
+  }
+
+  public static getInstance(): LCG {
+    if (!LCG.instance) {
+      LCG.instance = new LCG()
+    }
+    return LCG.instance
   }
 
   public next(): number {
@@ -52,28 +32,19 @@ class LCG {
   }
 
   public reset(): void {
-    this.state = seed
+    this.state = SEED
   }
 }
 
-const xorshift = new Xorshift32()
-const lcg = new LCG()
-
 /**
- * Generate a random number using the specified PRNG.
- * @param prng - Either "xorshift" or "lcg"; pass `null` to skip (default: 'lcg')
+ * Generate a random number using the LCG PRNG.
  * @param reset - Reset the PRNG state
  */
-export default function random(
-  prng: 'xorshift' | 'lcg' | null = 'lcg',
-  reset = false
-): number {
+export default function random(reset = false): number {
+  const lcg = LCG.getInstance()
   if (reset) {
     lcg.reset()
-    xorshift.reset()
+    return 0
   }
-  if (prng === null) return 0
-  if (prng === 'lcg') return lcg.next()
-  if (prng === 'xorshift') return xorshift.next()
-  throw new Error(`Unknown RNG: ${prng}`)
+  return lcg.next()
 }
