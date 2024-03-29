@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
     build: { target: 'esnext' },
     resolve: {
       alias: {
-        "@": resolve(__dirname, './src')
+        '@': resolve(__dirname, './src')
       }
     },
     plugins: [
