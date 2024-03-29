@@ -87,7 +87,7 @@ export default function Header() {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
                 <Icon className="h-5 w-5" />
-                <span className="sr-only">{activeTheme.label}</span>
+                <span className="sr-only">{`${activeTheme.label} theme`}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

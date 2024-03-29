@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 
-import uid from '../lib/uid'
+import uid from '@/lib/uid'
 
 describe('uid', () => {
   test('returns a string of the specified length', () => {

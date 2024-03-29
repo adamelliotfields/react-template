@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from 'bun:test'
 
-import random from '../lib/random'
+import random from '@/lib/random'
 
 // cleanup
 afterEach(() => {

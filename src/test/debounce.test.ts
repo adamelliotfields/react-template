@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, mock, test } from 'bun:test'
 
-import debounce from '../lib/debounce'
-import sleep from '../lib/sleep'
+import debounce from '@/lib/debounce'
+import sleep from '@/lib/sleep'
 
 let debouncedFn: ReturnType<typeof debounce>
 let notDebouncedFn: ReturnType<typeof debounce>

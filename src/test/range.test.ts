@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 
-import range from '../lib/range'
+import range from '@/lib/range'
 
 describe('range', () => {
   test('creates an array of numbers within a given range', () => {

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, mock, test } from 'bun:test'
-import sleep from '../lib/sleep'
-import throttle from '../lib/throttle'
+
+import sleep from '@/lib/sleep'
+import throttle from '@/lib/throttle'
 
 let throttledFn: ReturnType<typeof throttle>
 let mockedFn: ReturnType<typeof mock>
