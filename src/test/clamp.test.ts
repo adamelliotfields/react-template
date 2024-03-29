@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 
-import clamp from '../lib/clamp'
+import clamp from '@/lib/clamp'
 
 describe('clamp', () => {
   test('clamps a number between a min and max', () => {

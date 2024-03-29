@@ -1,3 +1,5 @@
+import { resolve } from 'node:path'
+
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 
@@ -11,6 +13,11 @@ export default defineConfig(({ mode }) => {
   return {
     base: mode === 'production' ? base : '/',
     build: { target: 'esnext' },
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src')
+      }
+    },
     plugins: [
       react({
         plugins: [

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 
-import formatDate from '../lib/format-date'
+import formatDate from '@/lib/format-date'
 
 describe('formatDate', () => {
   test('formats a date object', () => {

@@ -9,9 +9,10 @@ My personal template for React apps. Built for speed ⚡
 
 - [**Bun**](https://github.com/oven-sh/bun) for dependencies and tests.
 - [**Vite**](https://github.com/vitejs/vite) for builds.
+- [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) with [`shadcn-ui`](https://github.com/shadcn-ui/ui).
 - [**SWC**](https://github.com/vitejs/vite-plugin-react-swc) for hot reloading.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
-- [**Demo**](https://aef.me/react-template) with _TypeScript_, _Tailwind_, _Lucide_, _Jotai_, and _Wouter_.
+- [**Demo**](https://aef.me/react-template) 🚀
 
 ## Usage
 
@@ -32,6 +33,10 @@ bun i
 # start
 bun start
 ```
+
+### `shadcn-ui`
+
+Use `bun ui` as a shorthand for `bunx shadcn-ui`. For example, `bun ui add drawer` will add the [drawer](https://ui.shadcn.com/docs/components/drawer) component and install [`vaul`](https://github.com/emilkowalski/vaul).
 
 ## Configuration
 
@@ -56,6 +61,8 @@ Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.ym
 ## Utilities
 
 See [`clamp`](./src/lib/clamp.ts), [`debounce`](./src/lib/debounce.ts), [`formatDate`](./src/lib/format-date.ts), [`random`](./src/lib/random.ts), [`range`](./src/lib/range.ts), [`sleep`](./src/lib/sleep.ts), [`throttle`](./src/lib/throttle.ts), and [`uid`](./src/lib/uid.ts).
+
+[`utils.ts`](./src/lib/utils.ts) is reserved for `shadcn-ui` utilities like `cn` for classnames.
 
 ## Dark Mode
 

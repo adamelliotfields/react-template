@@ -1,78 +1,55 @@
-import clsx from 'clsx'
-import { Computer, Menu, Moon, Sun, X } from 'lucide-react'
-import { type HTMLAttributes, useEffect, useState } from 'react'
+import { Computer, Menu, Moon, Sun } from 'lucide-react'
+import { type PropsWithChildren, useEffect, useState } from 'react'
 import { Link, useRoute } from 'wouter'
 
-import Container from './Container'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { cn } from '@/lib/utils'
+
+// const { VITE_HOMEPAGE, VITE_TITLE } = import.meta.env
 
 const THEMES = [
-  { name: 'light' as const, icon: Sun, label: 'Use light theme' },
-  { name: 'dark' as const, icon: Moon, label: 'Use dark theme' },
-  { name: 'system' as const, icon: Computer, label: 'Use system theme' }
+  { name: 'light', icon: Sun, label: 'Light' },
+  { name: 'dark', icon: Moon, label: 'Dark' },
+  { name: 'system', icon: Computer, label: 'System' }
 ]
-
-type Theme = (typeof THEMES)[number]
-
-interface HeaderLinkType {
-  href: string
-  children: string
-}
-
-export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
-  border?: boolean
-  links?: HeaderLinkType[]
-}
-
-const { VITE_HOMEPAGE, VITE_TITLE } = import.meta.env
 
 const DEFAULT_THEME = THEMES[2] // system
 
-export default function Header({
-  border = false,
-  className,
-  links,
-  ...rest
-}: HeaderProps) {
-  const [theme, setTheme] = useState<Theme | null>(null)
-  const [open, setOpen] = useState(false)
+export default function Header() {
+  const [theme, setTheme] = useState<string | null>(null)
 
-  const hasLinks = Array.isArray(links) && links.length > 0
+  const activeTheme = THEMES.find((t) => t.name === theme) ?? DEFAULT_THEME
+  const { icon: Icon } = activeTheme as (typeof THEMES)[number]
 
-  const getThemeByName = (name: Theme['name']) => {
-    const result = THEMES.find((t) => t.name === name)
-    return result ?? DEFAULT_THEME
-  }
-
-  const toggleMenu = () => {
-    setOpen(!open)
-  }
-
-  const handleThemeClick = (name: Theme['name']) => {
-    setTheme(getThemeByName(name))
-  }
-
-  // set the data-theme attribute when `theme` changes
+  // set the data-theme attribute when theme changes
   useEffect(() => {
     const el = document.documentElement // <html>
 
     if (theme !== null) {
-      el.setAttribute('data-theme', theme.name)
+      el.setAttribute('data-theme', theme)
     } else {
-      const data = el.getAttribute('data-theme') as Theme['name']
-      if (data !== theme) setTheme(getThemeByName(data))
+      const data = el.getAttribute('data-theme') as string
+      if (data !== theme) setTheme(data)
     }
-  }, [getThemeByName, theme])
+  }, [theme])
 
   // listen for changes to LocalStorage
   useEffect(() => {
     const handler = (): void => {
       let dark = null
       try {
-        // throws if dark is not valid JSON
+        // throws if dark is not valid
         dark = JSON.parse(window.localStorage.getItem('dark') as string)
       } catch {}
       const storage = dark !== null ? 'dark' : dark === false ? 'light' : 'system'
-      setTheme(getThemeByName(storage))
+      setTheme(storage)
     }
 
     // attach the handler and remove on unmount
@@ -80,85 +57,64 @@ export default function Header({
     return () => {
       window.removeEventListener('storage', handler)
     }
-  }, [getThemeByName])
+  }, [])
 
   return (
-    <header
-      className={clsx(
-        'z-20 sticky top-0 bg-neutral-50',
-        'dark:bg-neutral-950 dark:border-neutral-700',
-        border && 'border-b border-neutral-300',
-        className
-      )}
-      {...rest}
-    >
-      <Container className="h-14 p-4 flex items-center justify-between" border={border}>
-        {/* brand logo */}
-        <a href={VITE_HOMEPAGE} className="font-bold font-mono text-xl tracking-wide">
-          {VITE_TITLE}
-        </a>
-        {/* desktop links */}
-        {hasLinks && (
-          <div className="hidden md:flex md:space-x-4 md:mr-16">
-            {links.map(({ children, href }) => (
-              <HeaderLink key={href} href={href}>
-                {children}
-              </HeaderLink>
-            ))}
-          </div>
-        )}
-        {/* icon buttons */}
-        <div className="flex items-center space-x-2">
-          {/* mobile menu toggle button */}
-          {hasLinks && (
-            <button
-              type="button"
-              onClick={toggleMenu}
-              className="flex md:hidden"
-              aria-controls="mobile-menu"
-              aria-expanded={open}
-              aria-label="Toggle menu"
-            >
-              {open ? (
-                <X className="text-neutral-900 dark:text-neutral-100" />
-              ) : (
-                <Menu className="text-neutral-900 dark:text-neutral-100" />
-              )}
-            </button>
-          )}
-          {THEMES.map(({ name, label, icon: Icon }) => (
-            <button
-              key={name}
-              type="button"
-              onClick={() => handleThemeClick(name)}
-              aria-label={label}
-            >
-              <Icon
-                size="1em"
-                className={clsx(
-                  'text-[20px]',
-                  theme === null || theme.name === name
-                    ? 'text-neutral-900 dark:text-neutral-100'
-                    : 'text-neutral-400 dark:text-neutral-600'
-                )}
-              />
-            </button>
-          ))}
+    <header className="h-16 w-full sticky top-0 flex items-center border-b border-neutral-300 dark:border-neutral-700">
+      <div className="container flex md:max-w-5xl">
+        <nav className="hidden flex-col md:flex md:flex-row md:items-center md:gap-4">
+          <HeaderBrand>App</HeaderBrand>
+          <HeaderLink href="/">Home</HeaderLink>
+          <HeaderLink href="/about">About</HeaderLink>
+        </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+              <h1 className="text-xl font-semibold">App</h1>
+              <HeaderLink href="/">Home</HeaderLink>
+              <HeaderLink href="/about">About</HeaderLink>
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="ml-auto">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Icon className="h-5 w-5" />
+                <span className="sr-only">{`${activeTheme.label} theme`}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {THEMES.map((t) => (
+                <DropdownMenuItem
+                  key={t.name}
+                  onClick={() => {
+                    setTheme(t.name)
+                  }}
+                >
+                  <t.icon className="h-5 w-5" />
+                  <span className="ml-1 font-medium text-sm">{t.label}</span>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-      </Container>
-      {/* mobile menu */}
-      {hasLinks && (
-        <div className={clsx('md:hidden', open ? 'block' : 'hidden')} id="mobile-menu">
-          <div className="flex flex-col space-y-2 px-4 pb-4">
-            {links.map(({ children, href }) => (
-              <HeaderLink key={href} href={href}>
-                {children}
-              </HeaderLink>
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
     </header>
+  )
+}
+
+function HeaderBrand({ children }: PropsWithChildren) {
+  return (
+    <Link to="/" className="min-w-fit text-base font-bold md:-mt-0.5 md:text-lg">
+      {children}
+    </Link>
   )
 }
 
@@ -167,11 +123,11 @@ function HeaderLink({ href, children }: { href: string; children: string }) {
   return (
     <Link
       to={href}
-      className={clsx(
-        'font-medium',
+      className={cn(
+        'font-medium text-base',
         isActive
-          ? 'text-neutral-900 dark:text-neutral-100'
-          : 'text-neutral-400 dark:text-neutral-600'
+          ? 'text-neutral-700 dark:text-neutral-300'
+          : 'text-neutral-400 transition-colors hover:text-neutral-600 dark:text-neutral-600 dark:hover:text-neutral-400'
       )}
       aria-current={isActive ? 'page' : undefined}
     >

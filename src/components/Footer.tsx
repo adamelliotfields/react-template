@@ -1,25 +1,7 @@
-import clsx from 'clsx'
-import { HTMLAttributes } from 'react'
-
-import Container from './Container'
-
-export interface FooterProps extends HTMLAttributes<HTMLElement> {
-  border?: boolean
-}
-
-export default function Footer({ border = false, className, ...rest }: FooterProps) {
+export default function Footer() {
   return (
-    <footer
-      className={clsx(
-        'z-20 text-neutral-500 bg-neutral-50 dark:bg-neutral-950',
-        border && 'border-t border-neutral-300 dark:border-neutral-700',
-        className
-      )}
-      {...rest}
-    >
-      <Container className="h-14 p-4 flex items-center justify-center" border={border}>
-        <span className="font-mono text-sm">&copy;{new Date().getFullYear()}</span>
-      </Container>
+    <footer className="h-16 w-full flex items-center justify-center border-t border-neutral-300 dark:border-neutral-700">
+      <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()}</p>
     </footer>
   )
 }
