@@ -66,10 +66,10 @@ See [`clamp`](./src/lib/clamp.ts), [`debounce`](./src/lib/debounce.ts), [`format
 
 ## Dark Mode
 
-A minified [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). This script checks for a `dark` key in local storage with the following logic:
+A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). This script checks for a `dark` key in local storage with the following logic:
   1. If `true`, then `data-theme` is set to `dark`.
   2. If `false`, then `data-theme` is set to `light`.
-  3. If not defined, then `data-theme` is set to `system`.
+  3. Otherwise `data-theme` is set to `system`.
 
 A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for `prefers-color-scheme` changes. Before the theme is updated, all transitions are temporarily disabled so the update is instant.
 
@@ -81,6 +81,7 @@ type Theme = typeof themes[number]
 
 const [theme, setTheme] = useState<Theme | null>(null)
 
+// runs when theme changes
 useEffect(() => {
   const el = document.documentElement
   if (theme !== null) {
@@ -91,20 +92,19 @@ useEffect(() => {
   }
 }, [theme])
 
+// runs on mount
 useEffect(() => {
   const handler = (): void => {
     let dark = null
     try {
       dark = JSON.parse(window.localStorage.getItem('dark') as string)
     } catch {}
-    const storage = dark !== null ? 'dark' : dark === false ? 'light' : 'system'
+    const storage = dark === true ? 'dark' : dark === false ? 'light' : 'system'
     setTheme(storage)
   }
 
   window.addEventListener('storage', handler)
-  return () => {
-    window.removeEventListener('storage', handler)
-  }
+  return () => window.removeEventListener('storage', handler)
 }, [])
 ```
 
