@@ -9,7 +9,7 @@ My personal template for React apps. Built for speed ⚡
 
 - [**Bun**](https://github.com/oven-sh/bun) for dependencies and tests.
 - [**Vite**](https://github.com/vitejs/vite) for builds.
-- [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) with [`shadcn-ui`](https://github.com/shadcn-ui/ui).
+- [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) with [shadcn-ui](https://github.com/shadcn-ui/ui).
 - [**SWC**](https://github.com/vitejs/vite-plugin-react-swc) for hot reloading.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
 - [**Demo**](https://aef.me/react-template) 🚀
@@ -36,23 +36,23 @@ bun start
 
 ### `shadcn-ui`
 
-Use `bun ui` as a shorthand for `bunx shadcn-ui`. For example, `bun ui add drawer` will add the [drawer](https://ui.shadcn.com/docs/components/drawer) component and install [`vaul`](https://github.com/emilkowalski/vaul).
+Use `bun ui` as a shorthand for `bunx shadcn-ui`. For example, `bun ui add drawer` will add the [drawer](https://ui.shadcn.com/docs/components/drawer) component and install [vaul](https://github.com/emilkowalski/vaul).
 
 ## Configuration
 
 Use [`.env`](./.env) for settings like title and description; use `.env.local` for secrets (Git ignored).
 
-The `VITE_HOMEPAGE` variable is used to determine the base path, similar to how [`homepage`](https://create-react-app.dev/docs/deployment/#github-pages) works in `create-react-app`.
+Set `VITE_HOMEPAGE` to the production URL of your app.
 
 ### GitHub Pages SPA
 
-I'm using the [`spa-github-pages`](https://github.com/rafgraph/spa-github-pages) technique to support client-side routing.
+I'm using the [spa-github-pages](https://github.com/rafgraph/spa-github-pages) technique to support client-side routing.
 
 In [`404.html`](./public/404.html), `PATH_SEGMENTS` is set to `1` to keep the base path. This means if your app is hosted at `you.github.io/your-app`, the base path will be `/your-app`, which is what you want.
 
 If this is your root `github.io` page or you're using a custom domain, set `PATH_SEGMENTS` to `0`.
 
-For the actual routing, I use [`wouter`](https://github.com/molefrog/wouter).
+For the actual routing, I use [wouter](https://github.com/molefrog/wouter).
 
 ## Deployment
 
@@ -62,7 +62,7 @@ Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.ym
 
 See [`clamp`](./src/lib/clamp.ts), [`debounce`](./src/lib/debounce.ts), [`formatDate`](./src/lib/format-date.ts), [`random`](./src/lib/random.ts), [`range`](./src/lib/range.ts), [`sleep`](./src/lib/sleep.ts), [`throttle`](./src/lib/throttle.ts), and [`uid`](./src/lib/uid.ts).
 
-[`utils.ts`](./src/lib/utils.ts) is reserved for `shadcn-ui` utilities like `cn` for classnames.
+The [`utils.ts`](./src/lib/utils.ts) file is reserved for `shadcn-ui` utilities like `cn` for classnames.
 
 ## Dark Mode
 
@@ -71,7 +71,9 @@ A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is in [`ind
   2. If `false`, then `data-theme` is set to `light`.
   3. Otherwise `data-theme` is set to `system`.
 
-A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for `prefers-color-scheme` changes. Before the theme is updated, all transitions are temporarily disabled so the update is instant.
+A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for changes to the `prefers-color-scheme` media query.
+
+Before the theme is updated, all transitions are temporarily disabled so the update is instant.
 
 In your app, you just need to put this somewhere:
 
