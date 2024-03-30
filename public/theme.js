@@ -8,12 +8,15 @@
   const storage = window.localStorage
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-  // 1. if dark is strictly "true" in local storage, use "dark"
-  // 2. if dark is strictly "false", use "light"
+  // 1. if dark is strictly `true`, use "dark"
+  // 2. if dark is strictly `false`, use "light"
   // 3. otherwise, use "system"
   const updateTheme = (...args) => {
-    const dark = JSON.parse(storage.getItem(DARK))
-    const theme = args[0] ?? (dark ? DARK : dark === false ? LIGHT : SYSTEM)
+    let dark
+    try {
+      dark = JSON.parse(storage.getItem(DARK))
+    } catch {}
+    const theme = args[0] ?? (dark === true ? DARK : dark === false ? LIGHT : SYSTEM)
     const transition = args[1] ?? true
     const classes = [DARK, '[&_*]:!transition-none']
 

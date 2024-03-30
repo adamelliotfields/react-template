@@ -1,3 +1,4 @@
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { Computer, Menu, Moon, Sun } from 'lucide-react'
 import { type PropsWithChildren, useEffect, useState } from 'react'
 import { Link, useRoute } from 'wouter'
@@ -48,15 +49,13 @@ export default function Header() {
         // throws if dark is not valid
         dark = JSON.parse(window.localStorage.getItem('dark') as string)
       } catch {}
-      const storage = dark !== null ? 'dark' : dark === false ? 'light' : 'system'
+      const storage = dark === true ? 'dark' : dark === false ? 'light' : 'system'
       setTheme(storage)
     }
 
     // attach the handler and remove on unmount
     window.addEventListener('storage', handler)
-    return () => {
-      window.removeEventListener('storage', handler)
-    }
+    return () => window.removeEventListener('storage', handler)
   }, [])
 
   return (
@@ -74,7 +73,10 @@ export default function Header() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left">
+          <SheetContent
+            side="left"
+            className="border-neutral-300 dark:border-neutral-700"
+          >
             <nav className="grid gap-6 text-lg font-medium">
               <h1 className="text-xl font-semibold">App</h1>
               <HeaderLink href="/">Home</HeaderLink>
@@ -82,7 +84,17 @@ export default function Header() {
             </nav>
           </SheetContent>
         </Sheet>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-4">
+          {/* GitHub link */}
+          <a
+            href="https://github.com/adamelliotfields/react-template"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubLogoIcon className="h-5 w-5" />
+            <span className="sr-only">GitHub</span>
+          </a>
+          {/* Theme menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -98,8 +110,8 @@ export default function Header() {
                     setTheme(t.name)
                   }}
                 >
-                  <t.icon className="h-5 w-5" />
-                  <span className="ml-1 font-medium text-sm">{t.label}</span>
+                  <t.icon className="h-5 w-5" strokeWidth={1.75} />
+                  <span className="ml-1.5 font-normal text-sm">{t.label}</span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
