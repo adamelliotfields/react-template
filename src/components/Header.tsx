@@ -73,10 +73,7 @@ export default function Header() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent
-            side="left"
-            className="border-neutral-300 dark:border-neutral-700"
-          >
+          <SheetContent side="left" className="border-neutral-300 dark:border-neutral-700">
             <nav className="grid gap-6 text-lg font-medium">
               <h1 className="text-xl font-semibold">App</h1>
               <HeaderLink href="/">Home</HeaderLink>
@@ -106,6 +103,7 @@ export default function Header() {
               {THEMES.map((t) => (
                 <DropdownMenuItem
                   key={t.name}
+                  className="cursor-pointer"
                   onClick={() => {
                     setTheme(t.name)
                   }}

@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["dist", "node_modules"]
+    "ignore": [".vscode", "dist", "node_modules"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 88
+    "lineWidth": 99
   },
   "javascript": {
     "formatter": {
@@ -26,8 +26,13 @@
         "noUndeclaredVariables": "error",
         "noUnusedVariables": "error"
       },
+      "style": {
+        "noNonNullAssertion": "off",
+        "useNumberNamespace": "off"
+      },
       "suspicious": {
-        "noArrayIndexKey": "off"
+        "noArrayIndexKey": "off",
+        "noGlobalIsNan": "off"
       }
     }
   },
