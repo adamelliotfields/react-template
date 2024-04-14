@@ -1,6 +1,9 @@
-import { Route, Switch } from 'wouter'
+import { Route, Switch, useRouter } from 'wouter'
 
 export default function Main() {
+  const { base } = useRouter()
+  const prefix = base === '/' ? '' : base
+
   return (
     <main className="py-8 container flex flex-col grow md:max-w-5xl">
       <div className="flex grow items-center justify-center rounded-lg bg-white shadow-sm border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
@@ -9,7 +12,7 @@ export default function Main() {
             <Route path="/">
               <img
                 className="h-auto w-full max-w-xs rounded-lg"
-                src="/placeholder.svg"
+                src={`${prefix}/placeholder.svg`}
                 alt="Placeholder"
               />
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Coming Soon!</h2>
