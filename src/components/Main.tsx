@@ -7,7 +7,11 @@ export default function Main() {
         <div className="flex flex-col items-center text-center space-y-2">
           <Switch>
             <Route path="/">
-              <img className="h-auto w-full max-w-xs rounded-lg" src="/placeholder.svg" />
+              <img
+                className="h-auto w-full max-w-xs rounded-lg"
+                src="/placeholder.svg"
+                alt="Placeholder"
+              />
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Coming Soon!</h2>
               <p className="text-base md:text-lg">Stay tuned 🚀</p>
             </Route>
