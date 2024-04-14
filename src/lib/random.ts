@@ -1,17 +1,16 @@
-// use an environment variable to seed
-const { VITE_SEED } = import.meta.env
-const SEED = Number(VITE_SEED) || Date.now()
-
-/*
- * ZX81 implementation of the LCG PRNG
+/**
+ * ZX81 implementation of the LCG PRNG.
  * https://en.wikipedia.org/wiki/Linear_congruential_generator
  */
 class LCG {
   private static instance: LCG
   private state: number
 
-  constructor() {
-    this.state = SEED
+  constructor(seed = 42) {
+    // use an optional environment variable to seed
+    const { VITE_SEED } = import.meta.env
+    const SEED = Number(VITE_SEED)
+    this.state = !isNaN(SEED) ? SEED : seed
   }
 
   public static getInstance(): LCG {
@@ -22,29 +21,22 @@ class LCG {
   }
 
   public next(): number {
-    const a = 75
-    const c = 74
-    const m = 2 ** 16 + 1
+    const a = 75 // multiplier
+    const c = 74 // increment
+    const m = 2 ** 16 + 1 // modulus
     this.state = (a * this.state + c) % m
 
     // divide by `m` to normalize to a float between 0 and 1
     return this.state / m
   }
-
-  public reset(): void {
-    this.state = SEED
-  }
 }
 
 /**
  * Generate a random number using the LCG PRNG.
- * @param reset - Reset the PRNG state
+ * @param min
+ * @param max
  */
-export default function random(reset = false): number {
+export default function random(min = 0, max = 1): number {
   const lcg = LCG.getInstance()
-  if (reset) {
-    lcg.reset()
-    return 0
-  }
-  return lcg.next()
+  return min + lcg.next() * (max - min)
 }

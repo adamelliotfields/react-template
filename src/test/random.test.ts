@@ -1,25 +1,16 @@
-import { afterEach, describe, expect, test } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 
 import random from '@/lib/random'
 
-// cleanup
-afterEach(() => {
-  // pass `true` to reset the PRNGs
-  random(true)
-})
-
 describe('random', () => {
-  test('returns a random number', () => {
+  it('returns the same number using the default seed', () => {
+    const result = Math.floor(random(1, 100))
+    expect(result).toEqual(5)
+  })
+
+  it('returns a different number on each call', () => {
     const a = random()
     const b = random()
     expect(a).not.toEqual(b)
-  })
-
-  test('returns the same number if reset', () => {
-    random(true)
-    const a = random()
-    random(true)
-    const b = random()
-    expect(a).toEqual(b)
   })
 })
