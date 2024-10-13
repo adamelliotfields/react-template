@@ -114,7 +114,7 @@ Now to change the theme in your app, you'd just call `setTheme` somewhere. I kno
 
 ## Open Graph
 
-To generate [`og.png`](./public/og.png), I used Vercel's [OG Playground](https://og-playground.vercel.app):
+To generate [`og.png`](./public/og.png), use Vercel's [OG Playground](https://og-playground.vercel.app):
   1. Set **Size** to `1.9:1`
   2. Set **Emoji Provider** to `Noto`
   3. Paste this template:
