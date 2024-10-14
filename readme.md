@@ -10,6 +10,7 @@ My personal template for React apps. Built for speed ⚡
 - [**Bun**](https://github.com/oven-sh/bun) for dependencies and tests.
 - [**Vite**](https://github.com/vitejs/vite) for builds.
 - [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) with [shadcn-ui](https://github.com/shadcn-ui/ui).
+- [**Framer**](https://github.com/framer/motion) Motion for [Magic UI](https://github.com/magicuidesign/magicui) animations.
 - [**SWC**](https://github.com/vitejs/vite-plugin-react-swc) for hot reloading.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
 - [**Demo**](https://aef.me/react-template) 🚀

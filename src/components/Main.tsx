@@ -1,5 +1,7 @@
 import { Route, Switch, useRouter } from 'wouter'
 
+import BlurFade from '@/components/ui/blur-fade'
+
 export default function Main() {
   const { base } = useRouter()
   const prefix = base === '/' ? '' : base
@@ -15,8 +17,12 @@ export default function Main() {
                 src={`${prefix}/placeholder.svg`}
                 alt="Placeholder"
               />
-              <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Coming Soon!</h2>
-              <p className="text-base md:text-lg">Stay tuned 🚀</p>
+              <BlurFade delay={0.2} inView>
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Coming Soon!</h2>
+              </BlurFade>
+              <BlurFade delay={0.4} inView>
+                <p className="text-base md:text-lg">Stay tuned 🚀</p>
+              </BlurFade>
             </Route>
             <Route>
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">404</h2>
