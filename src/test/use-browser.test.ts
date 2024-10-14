@@ -2,9 +2,9 @@ import { afterEach, describe, expect, it } from 'bun:test'
 
 import { renderHook } from '@testing-library/react'
 
-import useOS, { type OS } from '@/lib/use-os'
+import useBrowser, { type Browser } from '@/lib/use-browser'
 
-describe('useOS', () => {
+describe('useBrowser', () => {
   const userAgent = window.navigator.userAgent
 
   const agents = [
@@ -18,8 +18,19 @@ describe('useOS', () => {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0', // windows edge
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 OPR/110.0.0.0' // windows opera
   ]
-  const oses = ['windows', 'mac', 'android', 'linux', 'ios', 'ios', 'mac', 'windows', 'windows']
-  const zipped = oses.map((os, i) => [os, agents[i]]) as [OS, string][]
+
+  const browsers = [
+    'Chrome',
+    'Chrome',
+    'Chrome',
+    'Firefox',
+    'Safari',
+    'Safari',
+    'Safari',
+    'Edge',
+    'Opera'
+  ]
+  const zipped = browsers.map((browser, i) => [browser, agents[i]]) as [Browser, string][]
 
   const mockUserAgent = (value: string) => {
     Object.defineProperty(window.navigator, 'userAgent', { value, writable: true })
@@ -30,9 +41,9 @@ describe('useOS', () => {
   })
 
   // https://bun.sh/docs/test/writing#test-each
-  it.each(zipped)('returns %s', (os, agent) => {
+  it.each(zipped)('returns %s', (browser, agent) => {
     mockUserAgent(agent)
-    const { result } = renderHook(() => useOS())
-    expect(result.current).toEqual(os)
+    const { result } = renderHook(() => useBrowser())
+    expect(result.current).toEqual(browser)
   })
 })
