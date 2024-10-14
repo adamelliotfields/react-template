@@ -7,10 +7,7 @@ class LCG {
   private state: number
 
   constructor(seed = 42) {
-    // use an optional environment variable to seed
-    const { VITE_SEED } = import.meta.env
-    const SEED = Number(VITE_SEED)
-    this.state = !isNaN(SEED) ? SEED : seed
+    this.state = seed
   }
 
   public static getInstance(): LCG {

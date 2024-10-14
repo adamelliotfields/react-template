@@ -9,7 +9,7 @@ export default function Main() {
   return (
     <main className="py-8 container flex flex-col grow md:max-w-5xl">
       <div className="flex grow items-center justify-center rounded-lg bg-white shadow-sm border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
-        <div className="flex flex-col items-center text-center space-y-2">
+        <div className="m-4 space-y-2 flex flex-col items-center text-center">
           <Switch>
             <Route path="/">
               <img

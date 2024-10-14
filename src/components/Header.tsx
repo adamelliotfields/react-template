@@ -1,8 +1,9 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { Computer, Menu, Moon, Sun } from 'lucide-react'
-import { type PropsWithChildren, useEffect, useState } from 'react'
+import type { PropsWithChildren } from 'react'
 import { Link, useRoute } from 'wouter'
 
+import { type ThemeType, useTheme } from '@/components/Theme'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -11,52 +12,22 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import title from '@/lib/title'
 import { cn } from '@/lib/utils'
 
 // const { VITE_HOMEPAGE, VITE_TITLE } = import.meta.env
 
 const THEMES = [
-  { name: 'light', icon: Sun, label: 'Light' },
-  { name: 'dark', icon: Moon, label: 'Dark' },
-  { name: 'system', icon: Computer, label: 'System' }
+  { id: 'light' as ThemeType, icon: Sun },
+  { id: 'dark' as ThemeType, icon: Moon },
+  { id: 'system' as ThemeType, icon: Computer }
 ]
 
-const DEFAULT_THEME = THEMES[2] // system
-
 export default function Header() {
-  const [theme, setTheme] = useState<string | null>(null)
+  const { theme, setTheme } = useTheme()
 
-  const activeTheme = THEMES.find((t) => t.name === theme) ?? DEFAULT_THEME
-  const { icon: Icon } = activeTheme as (typeof THEMES)[number]
-
-  // set the data-theme attribute when theme changes
-  useEffect(() => {
-    const el = document.documentElement // <html>
-
-    if (theme !== null) {
-      el.setAttribute('data-theme', theme)
-    } else {
-      const data = el.getAttribute('data-theme') as string
-      if (data !== theme) setTheme(data)
-    }
-  }, [theme])
-
-  // listen for changes to LocalStorage
-  useEffect(() => {
-    const handler = (): void => {
-      let dark = null
-      try {
-        // throws if dark is not valid
-        dark = JSON.parse(window.localStorage.getItem('dark') as string)
-      } catch {}
-      const storage = dark === true ? 'dark' : dark === false ? 'light' : 'system'
-      setTheme(storage)
-    }
-
-    // attach the handler and remove on unmount
-    window.addEventListener('storage', handler)
-    return () => window.removeEventListener('storage', handler)
-  }, [])
+  const activeTheme = THEMES.find((t) => t.id === theme) ?? THEMES[2]
+  const { icon: Icon } = activeTheme
 
   return (
     <header className="h-16 w-full sticky top-0 flex items-center border-b border-neutral-300 dark:border-neutral-700">
@@ -96,20 +67,20 @@ export default function Header() {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
                 <Icon className="h-5 w-5" />
-                <span className="sr-only">{`${activeTheme.label} theme`}</span>
+                <span className="sr-only">{`${title(activeTheme.id)} theme`}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {THEMES.map((t) => (
                 <DropdownMenuItem
-                  key={t.name}
+                  key={t.id}
                   className="cursor-pointer"
                   onClick={() => {
-                    setTheme(t.name)
+                    setTheme(t.id)
                   }}
                 >
                   <t.icon className="h-5 w-5" strokeWidth={1.75} />
-                  <span className="ml-1.5 font-normal text-sm">{t.label}</span>
+                  <span className="ml-1.5 font-normal text-sm">{title(t.id)}</span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

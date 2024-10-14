@@ -67,51 +67,9 @@ The [`utils.ts`](./src/lib/utils.ts) file is reserved for `shadcn-ui` utilities 
 
 ## Dark Mode
 
-A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). This script checks for a `dark` key in local storage with the following logic:
-  1. If `true`, then `data-theme` is set to `dark`.
-  2. If `false`, then `data-theme` is set to `light`.
-  3. Otherwise `data-theme` is set to `system`.
+A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for changes to the `prefers-color-scheme` media query. Before the theme is updated, all transitions are temporarily disabled so the update is instant.
 
-A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for changes to the `prefers-color-scheme` media query.
-
-Before the theme is updated, all transitions are temporarily disabled so the update is instant.
-
-In your app, you just need to put this somewhere:
-
-```tsx
-const themes = ['dark', 'light', 'system'] as const
-type Theme = typeof themes[number]
-
-const [theme, setTheme] = useState<Theme | null>(null)
-
-// runs when theme changes
-useEffect(() => {
-  const el = document.documentElement
-  if (theme !== null) {
-    el.setAttribute('data-theme', theme)
-  } else {
-    const data = el.getAttribute('data-theme') as Theme
-    if (data !== theme) setTheme(data)
-  }
-}, [theme])
-
-// runs on mount
-useEffect(() => {
-  const handler = (): void => {
-    let dark = null
-    try {
-      dark = JSON.parse(window.localStorage.getItem('dark') as string)
-    } catch {}
-    const storage = dark === true ? 'dark' : dark === false ? 'light' : 'system'
-    setTheme(storage)
-  }
-
-  window.addEventListener('storage', handler)
-  return () => window.removeEventListener('storage', handler)
-}, [])
-```
-
-Now to change the theme in your app, you'd just call `setTheme` somewhere. I know this might seem convoluted at first, but it works well and can be adapted to any framework. See [`Header.tsx`](./src/components/Header.tsx) for an example.
+In your app, use `ThemeProvider` and `useTheme` from [`Theme.tsx`](./src/components/Theme.tsx) (see [`Header.tsx`](./src/components/Header.tsx) for usage).
 
 ## Open Graph
 
