@@ -3,18 +3,10 @@
  * https://en.wikipedia.org/wiki/Linear_congruential_generator
  */
 class LCG {
-  private static instance: LCG
   private state: number
 
-  constructor(seed = 42) {
+  constructor(seed: number) {
     this.state = seed
-  }
-
-  public static getInstance(): LCG {
-    if (!LCG.instance) {
-      LCG.instance = new LCG()
-    }
-    return LCG.instance
   }
 
   public next(): number {
@@ -28,12 +20,13 @@ class LCG {
   }
 }
 
-/**
- * Generate a random number using the LCG PRNG.
- * @param min
- * @param max
- */
-export default function random(min = 0, max = 1): number {
-  const lcg = LCG.getInstance()
-  return min + lcg.next() * (max - min)
+/** Generate a random number between `min` and `max`. */
+export default function random(min = 0, max = 1, random_fn = Math.random): number {
+  return min + (max - min) * random_fn()
+}
+
+/** Generate a seeded random number generator. */
+export function randomFromSeed(seed = 42): (min?: number, max?: number) => number {
+  const lcg = new LCG(seed)
+  return (min = 0, max = 1) => random(min, max, lcg.next.bind(lcg))
 }

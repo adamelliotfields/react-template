@@ -4,9 +4,9 @@ export type Device = 'Mobile/Phone' | 'Tablet' | 'Desktop/Laptop'
 
 /**
  * Returns the client device by user agent detection.
- * @example const mobile = ['Mobile/Phone', 'Tablet'].includes(useDevice())
- * @example const desktop = useDevice() === 'Desktop/Laptop'
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent
+ * @example
+ * const mobile = ['Mobile/Phone', 'Tablet'].includes(useDevice())
+ * const desktop = useDevice() === 'Desktop/Laptop'
  */
 export default function useDevice(): Device | null {
   const [device, setDevice] = useState<Device | null>(null)

@@ -5,7 +5,6 @@ export type Browser = 'Chrome' | 'Firefox' | 'Safari' | 'Edge' | 'Opera' | 'Unkn
 /**
  * Returns the client browser by user agent detection.
  * @example const chrome = useBrowser() === 'Chrome'
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent
  */
 export default function useBrowser(): Browser | null {
   const [browser, setBrowser] = useState<Browser | null>(null)

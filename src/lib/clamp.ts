@@ -1,4 +1,9 @@
-/** Clamp a number between two values. */
+/**
+ * Clamp a number between two values.
+ * @example
+ * clamp(1, 2, 3) // 2
+ * clamp(4, 2, 3) // 3
+ */
 export default function clamp(n: number, a: number, b: number): number {
   const min = Math.min(a, b)
   const max = Math.max(a, b)

@@ -1,4 +1,7 @@
-/** Title cases a string. */
+/**
+ * Title cases a string.
+ * @example title('hello, world!') // 'Hello, World!'
+ */
 export default function title(str: string): string {
   // (?:) is a non-capturing group (doesn't create a backreference)
   // ^ matches the start of the string

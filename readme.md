@@ -39,6 +39,8 @@ bun start
 
 Use `bun ui` as a shorthand for `bunx shadcn-ui`. For example, `bun ui add drawer` will add the [drawer](https://ui.shadcn.com/docs/components/drawer) component and install [vaul](https://github.com/emilkowalski/vaul).
 
+The [`utils.ts`](./src/lib/utils.ts) file is reserved for `shadcn-ui` utilities like `cn` for classnames.
+
 ## Configuration
 
 Use [`.env`](./.env) for settings like title and description; use `.env.local` for secrets (Git ignored).
@@ -58,12 +60,6 @@ For the actual routing, I use [wouter](https://github.com/molefrog/wouter).
 ## Deployment
 
 Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.yml`](./.github/workflows/build.yml).
-
-## Utilities
-
-See [`clamp`](./src/lib/clamp.ts), [`debounce`](./src/lib/debounce.ts), [`formatDate`](./src/lib/format-date.ts), [`random`](./src/lib/random.ts), [`range`](./src/lib/range.ts), [`sleep`](./src/lib/sleep.ts), [`throttle`](./src/lib/throttle.ts), [`uid`](./src/lib/uid.ts), and [`useOS`](./src/lib/use-os.ts).
-
-The [`utils.ts`](./src/lib/utils.ts) file is reserved for `shadcn-ui` utilities like `cn` for classnames.
 
 ## Dark Mode
 

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'bun:test'
+import { afterEach, describe, expect, test } from 'bun:test'
 
 import { renderHook } from '@testing-library/react'
 
@@ -41,7 +41,7 @@ describe('useDevice', () => {
   })
 
   // https://bun.sh/docs/test/writing#test-each
-  it.each(zipped)('returns %s', (device, agent) => {
+  test.each(zipped)('returns %s', (device, agent) => {
     mockUserAgent(agent)
     const { result } = renderHook(() => useDevice())
     expect(result.current).toEqual(device)

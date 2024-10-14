@@ -4,13 +4,10 @@ export type OS = 'ios' | 'mac' | 'android' | 'linux' | 'windows'
 
 /**
  * Returns the client OS by user agent detection.
- * @example const darwin = ['ios', 'mac'].includes(useOS())
- * @example const linux = ['android', 'linux'].includes(useOS())
- * @example const windows = useOS() === 'windows'
- * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform
- * @see https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/platform
+ * @example
+ * const darwin = ['ios', 'mac'].includes(useOS())
+ * const linux = ['android', 'linux'].includes(useOS())
+ * const windows = useOS() === 'windows'
  */
 export default function useOS(): OS | null {
   const [os, setOS] = useState<OS | null>(null)

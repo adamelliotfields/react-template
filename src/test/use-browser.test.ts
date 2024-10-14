@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'bun:test'
+import { afterEach, describe, expect, test } from 'bun:test'
 
 import { renderHook } from '@testing-library/react'
 
@@ -41,7 +41,7 @@ describe('useBrowser', () => {
   })
 
   // https://bun.sh/docs/test/writing#test-each
-  it.each(zipped)('returns %s', (browser, agent) => {
+  test.each(zipped)('returns %s', (browser, agent) => {
     mockUserAgent(agent)
     const { result } = renderHook(() => useBrowser())
     expect(result.current).toEqual(browser)

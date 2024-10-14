@@ -1,4 +1,9 @@
-/** Make a date human-readable. */
+/**
+ * Make a date human-readable.
+ * @example
+ * formatDate('2021-07-01T00:00:00Z') // 'July 1, 2021'
+ * formatDate('2021-07-01T00:00:00Z', 'short') // '2021-07-01'
+ */
 export default function formatDate(
   date: string | Date,
   format: 'long' | 'short' = 'long'
