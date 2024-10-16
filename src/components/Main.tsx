@@ -9,16 +9,18 @@ export default function Main() {
   return (
     <main className="py-8 container flex flex-col grow md:max-w-5xl">
       <div className="flex grow items-center justify-center rounded-lg bg-white shadow-sm border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
-        <div className="m-4 space-y-2 flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center">
           <Switch>
             <Route path="/">
               <img
-                className="h-auto w-full max-w-xs rounded-lg"
+                className="mb-8 h-auto w-full max-w-xs rounded-lg"
                 src={`${prefix}/placeholder.svg`}
                 alt="Placeholder"
               />
               <BlurFade delay={0.2} inView>
-                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Coming Soon!</h2>
+                <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
+                  Coming Soon!
+                </h2>
               </BlurFade>
               <BlurFade delay={0.4} inView>
                 <p className="text-base md:text-lg">Stay tuned 🚀</p>

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "template-react",
+  "name": "react-template",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
@@ -9,8 +9,7 @@
     "preview": "vite preview --host",
     "test": "bun test",
     "lint": "biome ci .",
-    "clean": "rm -rf .node_modules/.vite .swc dist",
-    "ui": "shadcn-ui"
+    "clean": "rm -rf .node_modules/.vite .swc dist"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.2",

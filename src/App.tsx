@@ -12,11 +12,9 @@ export default function App() {
   return (
     <Router base={PROD && base !== '/' ? base : undefined}>
       <ThemeProvider>
-        <div className="h-full flex flex-col bg-neutral-50 dark:bg-neutral-950">
-          <Header />
-          <Main />
-          <Footer />
-        </div>
+        <Header />
+        <Main />
+        <Footer />
       </ThemeProvider>
     </Router>
   )

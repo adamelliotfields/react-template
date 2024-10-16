@@ -17,8 +17,6 @@ My personal template for React apps. Built for speed ⚡
 
 ## Usage
 
-See [`package.json`](./package.json).
-
 ```sh
 # bun
 export PATH="${HOME}/.bun/bin:${PATH}"
@@ -34,12 +32,6 @@ bun i
 # start
 bun start
 ```
-
-### `shadcn-ui`
-
-Use `bun ui` as a shorthand for `bunx shadcn-ui`. For example, `bun ui add drawer` will add the [drawer](https://ui.shadcn.com/docs/components/drawer) component and install [vaul](https://github.com/emilkowalski/vaul).
-
-The [`utils.ts`](./src/lib/utils.ts) file is reserved for `shadcn-ui` utilities like `cn` for classnames.
 
 ## Configuration
 
@@ -63,7 +55,7 @@ Build runs on all PRs; deploy runs on pushes or merges to `main`. See [`build.ym
 
 ## Dark Mode
 
-A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is in [`index.html`](./index.html). A mutation observer watches for changes to the `data-theme` attribute, and an event handler listens for changes to the `prefers-color-scheme` media query. Before the theme is updated, all transitions are temporarily disabled so the update is instant.
+A [minified](https://try.terser.org) [`theme.js`](./public/theme.js) is already in [`index.html`](./index.html).
 
 In your app, use `ThemeProvider` and `useTheme` from [`Theme.tsx`](./src/components/Theme.tsx) (see [`Header.tsx`](./src/components/Header.tsx) for usage).
 

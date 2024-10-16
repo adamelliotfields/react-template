@@ -30,7 +30,7 @@
     <!-- theme -->
     <script>((t,e)=>{const a=["dark","light","system"],s=a[0],r=a[1],i=a[2],o=e.documentElement,d=t.localStorage,n=t.matchMedia("(prefers-color-scheme: dark)"),c=(...t)=>{let e;try{e=JSON.parse(d.getItem(s))}catch{}const a=t[0]??(!0===e?s:!1===e?r:i),c=t[1]??!0,m=[s,"[&_*]:!transition-none"];return a===s||a===i&&n.matches?o.classList.add(m[0]):o.classList.remove(m[0]),c||(o.classList.add(m[1]),setTimeout((()=>o.classList.remove(m[1])),0)),a};(()=>{const t=c();o.setAttribute("data-theme",t);new MutationObserver((t=>{const{target:e,oldValue:r}=t[0],o=e.getAttribute("data-theme");if(o!==r){if(!a.includes(o))return e.setAttribute("data-theme",i);o===i?d.removeItem(s):d.setItem(s,o===s),c(o,!1)}})).observe(o,{attributeFilter:["data-theme"],attributeOldValue:!0}),n.addEventListener("change",(()=>c(void 0,!1)))})()})(window,document);</script>
   <body class="h-full text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-950">
-    <div class="h-full" id="root"></div>
+    <div class="h-full flex flex-col" id="root"></div>
     <script>
       // https://github.com/rafgraph/spa-github-pages
       ;(function({ search, pathname, hash }, history) {
