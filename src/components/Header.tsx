@@ -1,7 +1,7 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { Computer, Menu, Moon, Sun } from 'lucide-react'
 import type { PropsWithChildren } from 'react'
-import { Link, useRoute } from 'wouter'
+import { Link, useRoute, useRouter } from 'wouter'
 
 import { type ThemeType, useTheme } from '@/components/Theme'
 import { Button } from '@/components/ui/button'
@@ -26,6 +26,8 @@ const THEMES = [
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
+  const { base } = useRouter()
+  const prefix = base === '/' ? '' : base
 
   const activeTheme = THEMES.find((t) => t.id === theme) ?? THEMES[2]
   const { icon: Icon } = activeTheme
@@ -35,11 +37,13 @@ export default function Header() {
       <div className="container flex md:max-w-5xl">
         <nav className="hidden flex-col md:flex md:flex-row md:items-center md:gap-4">
           <HeaderBrand>
-            <img
-              src="/placeholder.svg"
-              alt="App"
-              className="h-8 w-8 rounded-full ring-1 ring-neutral-300 bg-neutral-300 dark:ring-neutral-700 dark:bg-neutral-700"
-            />
+            <CoolMode options={{ size: 35, speedUp: 7, particle: `${prefix}/placeholder.svg` }}>
+              <img
+                src={`${prefix}/placeholder.svg`}
+                alt="Placeholder"
+                className="h-8 w-8 rounded-full ring-1 ring-neutral-300 bg-neutral-300 dark:ring-neutral-700 dark:bg-neutral-700"
+              />
+            </CoolMode>
           </HeaderBrand>
           <HeaderLink href="/">Home</HeaderLink>
           <HeaderLink href="/about">About</HeaderLink>
@@ -102,9 +106,7 @@ export default function Header() {
 function HeaderBrand({ children }: PropsWithChildren) {
   return (
     <Link to="/" className="min-w-fit text-base font-bold md:-mt-0.5 md:text-lg">
-      <CoolMode options={{ size: 35, speedUp: 7, particle: '/placeholder.svg' }}>
-        {children}
-      </CoolMode>
+      {children}
     </Link>
   )
 }
