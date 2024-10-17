@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": [".vscode", "dist", "node_modules"]
+    "ignore": [".vscode", "dist", "node_modules", "public"]
   },
   "formatter": {
     "enabled": true,

@@ -1,71 +1,57 @@
-;((window, document) => {
-  const THEMES = ['dark', 'light', 'system']
-  const DARK = THEMES[0]
-  const LIGHT = THEMES[1]
-  const SYSTEM = THEMES[2]
+;(({ localStorage, matchMedia }, { documentElement }) => {
+  class ThemeController {
+    media = matchMedia('(prefers-color-scheme: dark)')
 
-  const el = document.documentElement
-  const storage = window.localStorage
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-  // 1. if dark is strictly `true`, use "dark"
-  // 2. if dark is strictly `false`, use "light"
-  // 3. otherwise, use "system"
-  const updateTheme = (...args) => {
-    let dark
-    try {
-      dark = JSON.parse(storage.getItem(DARK))
-    } catch {}
-    const theme = args[0] ?? (dark === true ? DARK : dark === false ? LIGHT : SYSTEM)
-    const transition = args[1] ?? true
-    const classes = [DARK, '[&_*]:!transition-none']
-
-    if (theme === DARK || (theme === SYSTEM && mediaQuery.matches)) {
-      el.classList.add(classes[0])
-    } else {
-      el.classList.remove(classes[0])
+    constructor() {
+      this.initialize()
     }
 
-    // disable transitions for 1 tick
-    if (!transition) {
-      el.classList.add(classes[1])
-      setTimeout(() => el.classList.remove(classes[1]), 0)
+    get theme() {
+      let dark = null
+      try {
+        dark = JSON.parse(localStorage.getItem('dark') || 'null')
+      } catch {}
+      return dark === true ? 'dark' : dark === false ? 'light' : 'system'
     }
 
-    return theme
-  }
-
-  const initializeTheme = () => {
-    // call without args to get the current theme
-    const theme = updateTheme()
-    el.setAttribute('data-theme', theme)
-
-    // observe changes to the `data-theme` attribute
-    const observer = new MutationObserver((mutations) => {
-      const { target, oldValue } = mutations[0]
-      const newValue = target.getAttribute('data-theme')
-
-      if (newValue !== oldValue) {
-        if (!THEMES.includes(newValue)) return target.setAttribute('data-theme', SYSTEM)
-
-        if (newValue === SYSTEM) {
-          storage.removeItem(DARK)
-        } else {
-          storage.setItem(DARK, newValue === DARK)
-        }
-
-        // pass `false` to prevent transitions
-        updateTheme(newValue, false)
+    set theme(value) {
+      if (value === 'system') {
+        localStorage.removeItem('dark')
+      } else {
+        localStorage.setItem('dark', JSON.stringify(value === 'dark'))
       }
-    })
-    observer.observe(el, {
-      attributeFilter: ['data-theme'],
-      attributeOldValue: true
-    })
+    }
 
-    // listen for changes to the `prefers-color-scheme` media query
-    mediaQuery.addEventListener('change', () => updateTheme(undefined, false))
+    get isDark() {
+      return this.theme === 'dark' || (this.theme === 'system' && this.media.matches)
+    }
+
+    update(theme = this.theme) {
+      this.theme = ['dark', 'light', 'system'].includes(theme) ? theme : 'system'
+      documentElement.classList.toggle('dark', this.isDark)
+      documentElement.setAttribute('data-theme', this.theme)
+      documentElement.classList.add('[&_*]:!transition-none')
+      setTimeout(() => documentElement.classList.remove('[&_*]:!transition-none'), 0)
+    }
+
+    initialize() {
+      this.update()
+
+      const observer = new MutationObserver(([m]) => {
+        const newValue = m.target.getAttribute('data-theme')
+        if (newValue !== m.oldValue) {
+          this.update(newValue)
+        }
+      })
+
+      observer.observe(documentElement, {
+        attributeOldValue: true,
+        attributeFilter: ['data-theme']
+      })
+
+      this.media.addEventListener('change', (_) => this.update())
+    }
   }
 
-  initializeTheme()
+  new ThemeController()
 })(window, document)

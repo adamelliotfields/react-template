@@ -55,7 +55,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
       window.localStorage.removeItem('dark')
       return
     }
-    window.localStorage.setItem('dark', newTheme === 'dark' ? 'true' : 'false')
+    window.localStorage.setItem('dark', JSON.stringify(newTheme === 'dark'))
   }
 
   return (
