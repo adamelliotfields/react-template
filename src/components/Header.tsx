@@ -5,6 +5,7 @@ import { Link, useRoute } from 'wouter'
 
 import { type ThemeType, useTheme } from '@/components/Theme'
 import { Button } from '@/components/ui/button'
+import { CoolMode } from '@/components/ui/cool-mode'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,7 +34,13 @@ export default function Header() {
     <header className="h-16 w-full sticky top-0 flex items-center border-b border-neutral-300 dark:border-neutral-700">
       <div className="container flex md:max-w-5xl">
         <nav className="hidden flex-col md:flex md:flex-row md:items-center md:gap-4">
-          <HeaderBrand>App</HeaderBrand>
+          <HeaderBrand>
+            <img
+              src="/placeholder.svg"
+              alt="App"
+              className="h-8 w-8 rounded-full ring-1 ring-neutral-300 bg-neutral-300 dark:ring-neutral-700 dark:bg-neutral-700"
+            />
+          </HeaderBrand>
           <HeaderLink href="/">Home</HeaderLink>
           <HeaderLink href="/about">About</HeaderLink>
         </nav>
@@ -44,7 +51,10 @@ export default function Header() {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="border-neutral-300 dark:border-neutral-700">
+          <SheetContent
+            side="left"
+            className="max-w-xs sm:max-w-xs border-neutral-300 dark:border-neutral-700"
+          >
             <nav className="grid gap-6 text-lg font-medium">
               <h1 className="text-xl font-semibold">App</h1>
               <HeaderLink href="/">Home</HeaderLink>
@@ -59,14 +69,14 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHubLogoIcon className="h-5 w-5" />
+            <GitHubLogoIcon className="h-6 w-6" />
             <span className="sr-only">GitHub</span>
           </a>
           {/* Theme menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Icon className="h-5 w-5" />
+              <Button className="[&_svg]:size-5" variant="outline" size="icon">
+                <Icon strokeWidth={1.75} />
                 <span className="sr-only">{`${title(activeTheme.id)} theme`}</span>
               </Button>
             </DropdownMenuTrigger>
@@ -74,13 +84,11 @@ export default function Header() {
               {THEMES.map((t) => (
                 <DropdownMenuItem
                   key={t.id}
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setTheme(t.id)
-                  }}
+                  className="cursor-pointer [&_svg]:size-5"
+                  onClick={(_) => setTheme(t.id)}
                 >
-                  <t.icon className="h-5 w-5" strokeWidth={1.75} />
-                  <span className="ml-1.5 font-normal text-sm">{title(t.id)}</span>
+                  <t.icon className="mx-2" strokeWidth={1.75} />
+                  <span>{title(t.id)}</span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -94,7 +102,9 @@ export default function Header() {
 function HeaderBrand({ children }: PropsWithChildren) {
   return (
     <Link to="/" className="min-w-fit text-base font-bold md:-mt-0.5 md:text-lg">
-      {children}
+      <CoolMode options={{ size: 35, speedUp: 7, particle: '/placeholder.svg' }}>
+        {children}
+      </CoolMode>
     </Link>
   )
 }
