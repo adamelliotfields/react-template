@@ -4,13 +4,13 @@
   // performance
   "files.exclude": {
     ".swc/**": true,
-    "node_modules/**": true,
-    "dist/**": true
+    "dist/**": true,
+    "node_modules/**": true
   },
   "files.watcherExclude": {
     ".swc/**": true,
-    "node_modules/**": true,
-    "dist/**": true
+    "dist/**": true,
+    "node_modules/**": true
   },
 
   // tailwind

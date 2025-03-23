@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "test": "bun test",
     "lint": "biome ci .",
-    "clean": "rm -rf .node_modules/.vite .swc dist"
+    "clean": "rm -rf .swc dist node_modules/.vite node_modules/.vite-temp"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.6",
