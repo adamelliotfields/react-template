@@ -48,10 +48,7 @@ const getContainer = () => {
 
 let instanceCounter = 0
 
-const applyParticleEffect = (
-  element: HTMLElement,
-  options?: CoolParticleOptions
-): (() => void) => {
+const applyParticleEffect = (element: HTMLElement, options?: CoolParticleOptions): (() => void) => {
   instanceCounter++
 
   const defaultParticle = 'circle'

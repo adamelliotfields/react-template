@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
-  // need to manually load environment variables inside config
+  // manually load environment variables inside config
   const { VITE_HOMEPAGE } = loadEnv(mode, process.cwd())
 
   // determine base path

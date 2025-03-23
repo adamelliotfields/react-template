@@ -1,22 +1,21 @@
 {
-  "editor.rulers": [99],
+  "editor.rulers": [100],
 
   // performance
   "files.exclude": {
     ".swc/**": true,
     "node_modules/**": true,
-    "dist/**": true,
+    "dist/**": true
   },
   "files.watcherExclude": {
     ".swc/**": true,
     "node_modules/**": true,
-    "dist/**": true,
+    "dist/**": true
   },
 
   // tailwind
   "editor.quickSuggestions": { "strings": "on" },
   "files.associations": { "*.css": "tailwindcss" },
-  "tailwindCSS.classAttributes": ["class", "classes", "className", "classNames"],
 
   // biome
   "[javascript][javascriptreact][typescript][typescriptreact]": {

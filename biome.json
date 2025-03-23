@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": [".vscode", "dist", "node_modules", "public"]
+    "ignore": [".swc", "dist", "node_modules", "public"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 99
+    "lineWidth": 100
   },
   "javascript": {
     "formatter": {

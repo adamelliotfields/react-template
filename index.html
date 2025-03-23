@@ -28,7 +28,7 @@
     <meta property="twitter:image" content="%VITE_HOMEPAGE%/og.png" />
     <meta property="twitter:image:alt" content="%VITE_TITLE%" />
     <!-- theme -->
-    <script>(({localStorage:t,matchMedia:e},{documentElement:s})=>{new class{media=e("(prefers-color-scheme: dark)");constructor(){this.initialize()}get theme(){let e=null;try{e=JSON.parse(t.getItem("dark")||"null")}catch{}return!0===e?"dark":!1===e?"light":"system"}set theme(e){"system"===e?t.removeItem("dark"):t.setItem("dark",JSON.stringify("dark"===e))}get isDark(){return"dark"===this.theme||"system"===this.theme&&this.media.matches}update(t=this.theme){this.theme=["dark","light","system"].includes(t)?t:"system",s.classList.toggle("dark",this.isDark),s.setAttribute("data-theme",this.theme),s.classList.add("[&_*]:!transition-none"),setTimeout((()=>s.classList.remove("[&_*]:!transition-none")),0)}initialize(){this.update();new MutationObserver((([t])=>{const e=t.target.getAttribute("data-theme");e!==t.oldValue&&this.update(e)})).observe(s,{attributeOldValue:!0,attributeFilter:["data-theme"]}),this.media.addEventListener("change",(t=>this.update()))}}})(window,document);</script>
+    <script src="%VITE_HOMEPAGE%/theme.min.js"></script>
   <body class="h-full text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-950">
     <div class="h-full flex flex-col" id="root"></div>
     <script>

@@ -16,8 +16,6 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import title from '@/lib/title'
 import { cn } from '@/lib/utils'
 
-// const { VITE_HOMEPAGE, VITE_TITLE } = import.meta.env
-
 const THEMES = [
   { id: 'light' as ThemeType, icon: Sun },
   { id: 'dark' as ThemeType, icon: Moon },

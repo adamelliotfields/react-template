@@ -11,9 +11,7 @@ export const ThemeContext = createContext<ThemeContext | undefined>(undefined)
 
 export function useTheme() {
   const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
+  if (!context) throw new Error('useTheme must be used within a ThemeProvider')
   return context
 }
 
@@ -23,7 +21,6 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   // set the data-theme attribute when theme changes
   useEffect(() => {
     const el = document.documentElement // <html>
-
     if (theme !== null) {
       el.setAttribute('data-theme', theme)
     } else {
@@ -53,9 +50,9 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     setTheme(newTheme)
     if (newTheme === 'system') {
       window.localStorage.removeItem('dark')
-      return
+    } else {
+      window.localStorage.setItem('dark', JSON.stringify(newTheme === 'dark'))
     }
-    window.localStorage.setItem('dark', JSON.stringify(newTheme === 'dark'))
   }
 
   return (

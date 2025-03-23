@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node:20
+FROM mcr.microsoft.com/devcontainers/typescript-node:22
 
 # add bun bin to path
 ENV PATH "/home/node/.bun/bin:${PATH}"
