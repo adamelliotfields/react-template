@@ -7,12 +7,12 @@ export default function Main() {
   return (
     <main className="py-8 container flex flex-col grow md:max-w-5xl">
       {/* dot pattern has absolute positioning */}
-      <div className="relative flex grow items-center justify-center rounded-lg bg-white shadow-sm border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
+      <div className="relative flex grow items-center justify-center rounded-lg bg-white shadow-xs border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
         <Switch>
           <Route path="/">
             <>
               <Counter className="z-10" />
-              <DotPattern className="z-0 [mask-image:radial-gradient(circle,white_0%,transparent_75%)]" />
+              <DotPattern className="z-0 mask-[radial-gradient(circle,white_0%,transparent_75%)]" />
             </>
           </Route>
           <Route>

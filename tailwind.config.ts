@@ -1,8 +1,8 @@
 import typography from '@tailwindcss/typography'
+import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
 
-/** @type {import('tailwindcss').Config} */
-const config = {
+const config: Config = {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   plugins: [animate, typography],

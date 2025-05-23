@@ -74,7 +74,7 @@ export default function Header() {
           {/* Theme menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="[&_svg]:size-5" variant="outline" size="icon">
+              <Button className="cursor-pointer [&_svg]:size-5" variant="outline" size="icon">
                 <Icon strokeWidth={1.75} />
                 <span className="sr-only">{`${title(activeTheme.id)} theme`}</span>
               </Button>

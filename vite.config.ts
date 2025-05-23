@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 
+import tailwind from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig, loadEnv } from 'vite'
 
@@ -24,7 +25,8 @@ export default defineConfig(({ mode }) => {
           ['@swc-jotai/debug-label', {}],
           ['@swc-jotai/react-refresh', {}]
         ]
-      })
+      }),
+      tailwind()
     ],
     test: {
       coverage: {

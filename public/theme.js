@@ -30,8 +30,8 @@
       this.theme = ['dark', 'light', 'system'].includes(theme) ? theme : 'system'
       documentElement.classList.toggle('dark', this.isDark)
       documentElement.setAttribute('data-theme', this.theme)
-      documentElement.classList.add('[&_*]:!transition-none')
-      setTimeout(() => documentElement.classList.remove('[&_*]:!transition-none'), 0)
+      documentElement.classList.add('**:transition-none!')
+      setTimeout(() => documentElement.classList.remove('**:transition-none!'), 0)
     }
 
     initialize() {
