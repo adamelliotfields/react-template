@@ -25,6 +25,15 @@ export default defineConfig(({ mode }) => {
           ['@swc-jotai/react-refresh', {}]
         ]
       })
-    ]
+    ],
+    test: {
+      coverage: {
+        enabled: true,
+        provider: 'istanbul',
+        reporter: ['html'],
+        reportsDirectory: './html/coverage'
+      },
+      environment: 'happy-dom'
+    }
   }
 })

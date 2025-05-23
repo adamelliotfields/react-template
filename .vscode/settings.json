@@ -5,17 +5,22 @@
   "files.exclude": {
     ".swc/**": true,
     "dist/**": true,
+    "html/**": true,
     "node_modules/**": true
   },
   "files.watcherExclude": {
     ".swc/**": true,
     "dist/**": true,
+    "html/**": true,
     "node_modules/**": true
   },
 
   // tailwind
   "editor.quickSuggestions": { "strings": "on" },
   "files.associations": { "*.css": "tailwindcss" },
+
+  // vitest
+  "vitest.shellType": "terminal",
 
   // biome
   "[javascript][javascriptreact][typescript][typescriptreact]": {

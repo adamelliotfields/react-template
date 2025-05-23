@@ -1,6 +1,6 @@
 {
-  "build": { "dockerfile": "Dockerfile" },
-  "postCreateCommand": "bun install",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node",
+  "postCreateCommand": "npm ci",
   "waitFor": "postCreateCommand",
   "forwardPorts": [4173, 5173],
   "containerEnv": {

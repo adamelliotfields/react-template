@@ -7,26 +7,23 @@ My template for React apps hosted on GitHub Pages.
 
 ## Features
 
-- [**Bun**](https://github.com/oven-sh/bun), [**Vite**](https://github.com/vitejs/vite), and [**SWC**](https://github.com/vitejs/vite-plugin-react-swc).
+- [**Vite**](https://github.com/vitejs/vite) with [**SWC**](https://github.com/vitejs/vite-plugin-react-swc).
 - [**Jotai**](https://github.com/pmndrs/jotai) for React state.
 - [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) for [shadcn-ui](https://github.com/shadcn-ui/ui) components.
 - [**Motion**](https://github.com/framer/motion) for [Magic UI](https://github.com/magicuidesign/magicui) animations.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
+- [**Vitest**](https://github.com/vitest-dev/vitest) for testing.
 
 ## Usage
 
 ```sh
-# bun
-export PATH="${HOME}/.bun/bin:${PATH}"
-curl -fsSL https://bun.sh/install | bash
-
 # clone
-bunx degit adamelliotfields/react-template my-app
+npx degit adamelliotfields/react-template my-app
 cd my-app
 
 # start
-bun install
-bun start
+npm install
+npm start
 ```
 
 ## Configuration

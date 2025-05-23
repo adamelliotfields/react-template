@@ -1,3 +1,0 @@
-[test]
-preload = "./src/setup-tests.ts"
-coverage = true
