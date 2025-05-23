@@ -5,7 +5,6 @@ import { Link, useRoute, useRouter } from 'wouter'
 
 import { type ThemeType, useTheme } from '@/components/Theme'
 import { Button } from '@/components/ui/button'
-import { CoolMode } from '@/components/ui/cool-mode'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,13 +34,11 @@ export default function Header() {
       <div className="container flex md:max-w-5xl">
         <nav className="hidden flex-col md:flex md:flex-row md:items-center md:gap-4">
           <HeaderBrand>
-            <CoolMode options={{ size: 35, speedUp: 7, particle: `${prefix}/placeholder.svg` }}>
-              <img
-                src={`${prefix}/placeholder.svg`}
-                alt="Placeholder"
-                className="h-8 w-8 rounded-full ring-1 ring-neutral-300 bg-neutral-300 dark:ring-neutral-700 dark:bg-neutral-700"
-              />
-            </CoolMode>
+            <img
+              src={`${prefix}/placeholder.svg`}
+              alt="Placeholder"
+              className="h-8 w-8 rounded-full ring-1 ring-neutral-300 bg-neutral-300 dark:ring-neutral-700 dark:bg-neutral-700"
+            />
           </HeaderBrand>
           <HeaderLink href="/">Home</HeaderLink>
           <HeaderLink href="/about">About</HeaderLink>
