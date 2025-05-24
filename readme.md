@@ -7,7 +7,6 @@ My template for React apps hosted on GitHub Pages.
 
 ## Features
 
-- [**Vite**](https://github.com/vitejs/vite) with [**Rolldown**](https://vite.dev/guide/rolldown.html).
 - [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) for [shadcn-ui](https://github.com/shadcn-ui/ui) components.
 - [**Motion**](https://github.com/framer/motion) for [Magic UI](https://github.com/magicuidesign/magicui) animations.
 - [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
