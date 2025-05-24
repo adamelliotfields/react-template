@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         '@': resolve(__dirname, './src')
       }
     },
-    plugins: [react(), tailwind()],
+    plugins: mode === 'test' ? [] : [react(), tailwind()],
     test: {
       coverage: {
         enabled: true,
