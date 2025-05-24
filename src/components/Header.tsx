@@ -1,8 +1,8 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { Computer, Menu, Moon, Sun } from 'lucide-react'
 import type { PropsWithChildren } from 'react'
 import { Link, useRoute, useRouter } from 'wouter'
 
+import GitHubIcon from '@/components/GitHubIcon'
 import { type ThemeType, useTheme } from '@/components/Theme'
 import { Button } from '@/components/ui/button'
 import {
@@ -68,13 +68,17 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHubLogoIcon className="h-6 w-6" />
+            <GitHubIcon className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </a>
           {/* Theme menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="cursor-pointer [&_svg]:size-5" variant="outline" size="icon">
+              <Button
+                className="cursor-pointer border-transparent [&_svg]:size-5"
+                variant="outline"
+                size="icon"
+              >
                 <Icon strokeWidth={1.75} />
                 <span className="sr-only">{`${title(activeTheme.id)} theme`}</span>
               </Button>

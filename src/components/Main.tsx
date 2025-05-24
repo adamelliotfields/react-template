@@ -7,7 +7,7 @@ export default function Main() {
   return (
     <main className="py-8 container flex flex-col grow md:max-w-5xl">
       {/* dot pattern has absolute positioning */}
-      <div className="relative flex grow items-center justify-center rounded-lg bg-white shadow-xs border border-dashed border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700">
+      <div className="relative flex grow items-center justify-center rounded-lg bg-white shadow-xs dark:bg-neutral-900">
         <Switch>
           <Route path="/">
             <>

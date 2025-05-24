@@ -14,7 +14,7 @@ interface DotPatternProps {
   [key: string]: unknown
 }
 
-export function DotPattern({
+export default function DotPattern({
   width = 16,
   height = 16,
   x = 0,
@@ -53,5 +53,3 @@ export function DotPattern({
     </svg>
   )
 }
-
-export default DotPattern
