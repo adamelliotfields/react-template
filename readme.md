@@ -7,7 +7,7 @@ My template for React apps hosted on GitHub Pages.
 
 ## Features
 
-- [**Vite**](https://github.com/vitejs/vite) with [**SWC**](https://github.com/vitejs/vite-plugin-react-swc).
+- [**Vite**](https://github.com/vitejs/vite) with [**Rolldown**](https://vite.dev/guide/rolldown.html).
 - [**Jotai**](https://github.com/pmndrs/jotai) for React state.
 - [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) for [shadcn-ui](https://github.com/shadcn-ui/ui) components.
 - [**Motion**](https://github.com/framer/motion) for [Magic UI](https://github.com/magicuidesign/magicui) animations.

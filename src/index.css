@@ -1,3 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@config '../tailwind.config.ts';
+@config "../tailwind.config.ts";

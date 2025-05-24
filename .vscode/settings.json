@@ -3,13 +3,11 @@
 
   // performance
   "files.exclude": {
-    ".swc/**": true,
     "dist/**": true,
     "html/**": true,
     "node_modules/**": true
   },
   "files.watcherExclude": {
-    ".swc/**": true,
     "dist/**": true,
     "html/**": true,
     "node_modules/**": true

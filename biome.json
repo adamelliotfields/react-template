@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": [".swc", "dist", "html", "node_modules", "package-lock.json", "public"]
+    "ignore": ["dist", "html", "node_modules", "package-lock.json", "public"]
   },
   "formatter": {
     "enabled": true,

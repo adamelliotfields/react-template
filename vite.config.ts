@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 
 import tailwind from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react-oxc'
 import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
@@ -19,15 +19,7 @@ export default defineConfig(({ mode }) => {
         '@': resolve(__dirname, './src')
       }
     },
-    plugins: [
-      react({
-        plugins: [
-          ['@swc-jotai/debug-label', {}],
-          ['@swc-jotai/react-refresh', {}]
-        ]
-      }),
-      tailwind()
-    ],
+    plugins: [react(), tailwind()],
     test: {
       coverage: {
         enabled: true,
