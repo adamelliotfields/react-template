@@ -1,5 +1,4 @@
-import { useAtom } from 'jotai'
-import { RESET, atomWithReset } from 'jotai/utils'
+import{ useState } from 'react'
 import { Minus, Plus, RotateCcw } from 'lucide-react'
 
 import BlurFade from '@/components/ui/blur-fade'
@@ -7,17 +6,15 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
-const countAtom = atomWithReset(0)
-
 export interface CounterProps {
   className?: string
 }
 
 export default function Counter({ className }: CounterProps) {
-  const [count, setCount] = useAtom(countAtom)
+  const [count, setCount] = useState(0)
   const increment = () => setCount(count + 1)
   const decrement = () => setCount(count > 0 ? count - 1 : 0)
-  const reset = () => setCount(RESET)
+  const reset = () => setCount(0)
 
   return (
     <Card className={cn('text-center', className)}>
