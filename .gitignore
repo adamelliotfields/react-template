@@ -1,7 +1,5 @@
+.claude/
+.DS_Store
 dist/
-html/
 node_modules/
-
-# secrets
-.env.local
-.env.*.local
+tmpclaude-*

@@ -1,63 +1,50 @@
-import { type PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
+import { type ElementType, useEffect, useState } from 'react'
 
-export type ThemeType = 'light' | 'dark' | 'system'
+type ThemeName = 'light' | 'dark' | 'system'
 
-export interface ThemeContext {
-  theme: ThemeType | null
-  setTheme: (theme: ThemeType) => void
+type ThemeType = {
+  name: ThemeName
+  icon: ElementType
 }
 
-export const ThemeContext = createContext<ThemeContext | undefined>(undefined)
-
-export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (!context) throw new Error('useTheme must be used within a ThemeProvider')
-  return context
+export interface ThemeProps {
+  themes: ThemeType[]
 }
 
-export function ThemeProvider({ children }: PropsWithChildren) {
-  const [theme, setTheme] = useState<ThemeType | null>(null)
+export default function Theme({ themes }: ThemeProps) {
+  const [selectedTheme, setSelectedTheme] = useState<ThemeType | null>(null)
 
-  // set the data-theme attribute when theme changes
+  // On mount, read data-theme.
+  // When user changes selection, write data-theme.
   useEffect(() => {
-    const el = document.documentElement // <html>
-    if (theme !== null) {
-      el.setAttribute('data-theme', theme)
-    } else {
-      const data = el.getAttribute('data-theme') as ThemeType
-      if (data !== theme) setTheme(data)
-    }
-  }, [theme])
+    const { documentElement } = window.document
 
-  // listen for changes to LocalStorage
-  useEffect(() => {
-    const handler = (): void => {
-      let dark = null
-      try {
-        // throws if dark is not valid
-        dark = JSON.parse(window.localStorage.getItem('dark') as string)
-      } catch {}
-      const storage = dark === true ? 'dark' : dark === false ? 'light' : 'system'
-      setTheme(storage)
+    if (selectedTheme) {
+      documentElement.setAttribute('data-theme', selectedTheme.name)
+      return
     }
 
-    // attach the handler and remove on unmount
-    window.addEventListener('storage', handler)
-    return () => window.removeEventListener('storage', handler)
-  }, [])
+    const name = documentElement.getAttribute('data-theme') as ThemeName | null
+    setSelectedTheme(themes.find((t) => t.name === name) ?? themes[0] ?? null)
+  }, [themes, selectedTheme])
 
-  const setThemeAndStore = (newTheme: ThemeType) => {
-    setTheme(newTheme)
-    if (newTheme === 'system') {
-      window.localStorage.removeItem('dark')
-    } else {
-      window.localStorage.setItem('dark', JSON.stringify(newTheme === 'dark'))
-    }
+  const cycleTheme = () => {
+    const i = themes.findIndex((t) => t.name === selectedTheme?.name)
+    const next = themes[(i + 1) % themes.length]
+    if (next) setSelectedTheme(next)
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: setThemeAndStore }}>
-      {children}
-    </ThemeContext.Provider>
+    <button className="cursor-pointer" type="button" onClick={cycleTheme} aria-label="Toggle theme">
+      {themes.map(({ name, icon: Icon }) => (
+        <Icon
+          key={name}
+          width="1.125em"
+          height="1.125em"
+          strokeWidth={1.5}
+          style={{ display: selectedTheme?.name === name ? 'block' : 'none' }}
+        />
+      ))}
+    </button>
   )
 }

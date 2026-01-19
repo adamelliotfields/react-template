@@ -1,11 +1,31 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "files": {
-    "ignore": ["dist", "html", "node_modules", "package-lock.json", "public"]
+    "includes": [
+      "**",
+      "!**/.devcontainer",
+      "!**/.vscode",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/package-lock.json",
+      "!**/public"
+    ]
   },
   "formatter": {
-    "enabled": true,
-    "useEditorconfig": true
+    "indentStyle": "space",
+    "lineWidth": 100
   },
   "javascript": {
     "formatter": {
@@ -15,28 +35,25 @@
     }
   },
   "linter": {
-    "enabled": true,
     "rules": {
       "recommended": true,
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
       "complexity": {
-        "useRegexLiterals": "off"
+        "noImportantStyles": "off"
       },
       "correctness": {
         "noUndeclaredVariables": "error",
         "noUnusedVariables": "error"
       },
       "style": {
-        "noNonNullAssertion": "off",
         "useNumberNamespace": "off"
       },
       "suspicious": {
-        "noArrayIndexKey": "off",
         "noGlobalIsNan": "off"
       }
     }
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "vcs": {
     "enabled": true,

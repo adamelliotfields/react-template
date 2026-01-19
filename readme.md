@@ -7,10 +7,12 @@ My template for React apps hosted on GitHub Pages.
 
 ## Features
 
-- [**Tailwind**](https://github.com/tailwindlabs/tailwindcss) for [shadcn-ui](https://github.com/shadcn-ui/ui) components.
-- [**Motion**](https://github.com/framer/motion) for [Magic UI](https://github.com/magicuidesign/magicui) animations.
-- [**Biome**](https://github.com/biomejs/biome) for linting and formatting.
-- [**Vitest**](https://github.com/vitest-dev/vitest) for testing.
+- [**Tailwind CSS**](https://github.com/tailwindlabs/tailwindcss)
+- [**shadcn/ui**](https://github.com/shadcn-ui/ui)
+- [**Motion**](https://github.com/framer/motion)
+- [**Wouter**](https://github.com/molefrog/wouter)
+- [**Biome**](https://github.com/biomejs/biome)
+- [**Vitest**](https://github.com/vitest-dev/vitest)
 
 ## Usage
 
@@ -21,12 +23,8 @@ cd my-app
 
 # start
 npm install
-npm start
+npx vite
 ```
-
-## Configuration
-
-Use [`.env`](./.env) for settings like title and description; use `.env.local` for secrets.
 
 ## Routing
 
@@ -40,7 +38,7 @@ If this is your root `github.io` page or you're using a custom domain, set `PATH
 
 ## Dark Mode
 
-See [`theme.js`](./public/theme.js) and [`Theme.tsx`](./src/components/Theme.tsx) for the implementation and [`Header.tsx`](./src/components/Header.tsx) for usage.
+See [`theme.js`](./public/theme.js) and [`Theme.tsx`](./src/components/Theme.tsx) for the implementation.
 
 ## CI/CD
 
@@ -48,7 +46,7 @@ See [`build.yml`](./.github/workflows/build.yml). Build runs on all PRs; deploy 
 
 ## SEO
 
-To generate [`og.png`](./public/og.png), use Vercel's [OG Playground](https://og-playground.vercel.app):
+Use Vercel's [OG Playground](https://og-playground.vercel.app) to generate `./public/og.png`:
   1. Set **Size** to `1.9:1`
   2. Set **Emoji Provider** to `Noto`
   3. Paste this template:

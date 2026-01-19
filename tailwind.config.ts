@@ -6,10 +6,6 @@ const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   plugins: [typography],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem'
-    },
     extend: {
       typography: (_) => ({
         DEFAULT: {

@@ -4,12 +4,10 @@
   // performance
   "files.exclude": {
     "dist/**": true,
-    "html/**": true,
     "node_modules/**": true
   },
   "files.watcherExclude": {
     "dist/**": true,
-    "html/**": true,
     "node_modules/**": true
   },
 
