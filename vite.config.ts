@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 // TODO: change this
-const BASE_PATH = '/react-template'
+const BASE_URL = '/react-template'
 
 export default defineConfig(({ mode }) => {
   return {
-    base: mode === 'production' ? BASE_PATH : '/',
+    base: mode === 'production' ? BASE_URL : '/',
     build: { target: 'esnext' },
     resolve: {
       alias: {
