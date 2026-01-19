@@ -4,9 +4,12 @@ import tailwind from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
+// TODO: change this
+const BASE_PATH = '/react-template'
+
 export default defineConfig(({ mode }) => {
   return {
-    base: '/',
+    base: mode === 'production' ? BASE_PATH : '/',
     build: { target: 'esnext' },
     resolve: {
       alias: {
