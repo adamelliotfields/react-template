@@ -13,15 +13,7 @@
     }
   },
   "files": {
-    "includes": [
-      "**",
-      "!**/.devcontainer",
-      "!**/.vscode",
-      "!**/dist",
-      "!**/node_modules",
-      "!**/package-lock.json",
-      "!**/public"
-    ]
+    "includes": ["**", "!**/dist", "!**/node_modules", "!**/package-lock.json", "!**/public"]
   },
   "formatter": {
     "indentStyle": "space",
@@ -51,6 +43,7 @@
         "useNumberNamespace": "off"
       },
       "suspicious": {
+        "noArrayIndexKey": "off",
         "noGlobalIsNan": "off"
       }
     }
