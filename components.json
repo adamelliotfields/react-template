@@ -3,11 +3,12 @@
   "style": "new-york",
   "rsc": false,
   "tsx": true,
+  "iconLibrary": "lucide",
   "tailwind": {
     "config": "",
     "css": "src/index.css",
     "baseColor": "neutral",
-    "cssVariables": false,
+    "cssVariables": true,
     "prefix": ""
   },
   "aliases": {
