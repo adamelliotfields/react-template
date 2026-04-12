@@ -8,41 +8,22 @@
     <meta name="theme-color" content="#000000" />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- <link rel="canonical" href="https://aef.me/react-template" /> -->
-
-    <!-- <meta property="og:type" content="website" /> -->
-    <!-- <meta property="og:url" content="https://aef.me/react-template" /> -->
-    <!-- <meta property="og:title" content="React Template" /> -->
-    <!-- <meta property="og:description" content="A starter kit for single page apps" /> -->
-    <!-- <meta property="og:image" content="/react-template/og.png" /> -->
-    <!-- <meta property="og:image:type" content="image/png" /> -->
-    <!-- <meta property="og:image:url" content="/react-template/og.png" /> -->
-    <!-- <meta property="og:image:alt" content="React Template" /> -->
-    <!-- <meta property="og:image:width" content="1200" /> -->
-    <!-- <meta property="og:image:height" content="630" /> -->
-    <!-- <meta property="og:site_name" content="React Template" /> -->
-
-    <!-- <meta property="twitter:card" content="summary_large_image" /> -->
-    <!-- <meta property="twitter:title" content="React Template" /> -->
-    <!-- <meta property="twitter:description" content="A starter kit for single page apps" /> -->
-    <!-- <meta property="twitter:image" content="/react-template/og.png" /> -->
-    <!-- <meta property="twitter:image:alt" content="React Template" /> -->
     <script src="/theme.min.js"></script>
   </head>
   <body class="h-full text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-950">
     <div class="h-full flex flex-col" id="root"></div>
     <script>
       // https://github.com/rafgraph/spa-github-pages
-      ;(({ search, pathname, hash }, history) => {
-        if (search[1] === '/') {
-          const decoded = search
-            .slice(1)
-            .split('&')
-            .map((s) => s.replace(/~and~/g, '&'))
-            .join('?')
-          history.replaceState(null, '', pathname.slice(0, -1) + decoded + hash)
-        }
-      })(window.location, window.history)
+                  ;(({ search, pathname, hash }, history) => {
+                    if (search[1] === '/') {
+                      const decoded = search
+                        .slice(1)
+                        .split('&')
+                        .map((s) => s.replace(/~and~/g, '&'))
+                        .join('?')
+                      history.replaceState(null, '', pathname.slice(0, -1) + decoded + hash)
+                    }
+                  })(window.location, window.history)
     </script>
     <script src="./src/index.tsx" type="module"></script>
   </body>
