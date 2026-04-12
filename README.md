@@ -1,18 +1,18 @@
 # react-template
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/adamelliotfields/react-template?devcontainer_path=.devcontainer/devcontainer.json&machine=basicLinux32gb)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/adamelliotfields/react-template?machine=basicLinux32gb)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://pr.new/adamelliotfields/react-template)
 
-My template for React apps hosted on GitHub Pages.
+A template for React single page apps.
 
 ## Features
 
-- [**Tailwind CSS**](https://github.com/tailwindlabs/tailwindcss)
-- [**shadcn/ui**](https://github.com/shadcn-ui/ui)
+- [**Tailwind**](https://github.com/tailwindlabs/tailwindcss)
+- [**shadcn**](https://github.com/shadcn-ui/ui)
 - [**Motion**](https://github.com/framer/motion)
 - [**Wouter**](https://github.com/molefrog/wouter)
-- [**Biome**](https://github.com/biomejs/biome)
 - [**Vitest**](https://github.com/vitest-dev/vitest)
+- [**Biome**](https://github.com/biomejs/biome)
 
 ## Usage
 
@@ -36,29 +36,14 @@ In [`404.html`](./public/404.html), the `PATH_SEGMENTS` variable is set to `1`. 
 
 If this is your root `github.io` page or you're using a custom domain, set `PATH_SEGMENTS` to `0` so the base path will be `/`.
 
+You also need to change `BASE_URL` in [`vite.config.ts`](./vite.config.ts) to match.
+
+If you're not using GitHub Pages, you or your agent can remove this.
+
 ## Dark Mode
 
 See [`theme.js`](./public/theme.js) and [`Theme.tsx`](./src/components/Theme.tsx) for the implementation.
 
 ## CI/CD
 
-See [`build.yml`](./.github/workflows/build.yml). Build runs on all PRs; deploy runs on pushes or merges to `main`.
-
-## SEO
-
-Use Vercel's [OG Playground](https://og-playground.vercel.app) to generate `./public/og.png`:
-  1. Set **Size** to `1.9:1`
-  2. Set **Emoji Provider** to `Noto`
-  3. Paste this template:
-
-```html
-<div tw="p-12 h-full w-full flex bg-neutral-50">
-  <div tw="p-6 w-full flex flex-col justify-end border-8 border-neutral-900">
-    <h2 tw="mb-0 flex flex-col text-neutral-900">
-      <span tw="-ml-2 text-8xl">⚛️</span>
-      <span tw="mt-6 text-6xl">React Template</span>
-    </h2>
-    <p tw="text-4xl">A starter kit for single page apps</p>
-  </div>
-</div>
-```
+See [`build.yaml`](./.github/workflows/build.yaml). Build runs on all PRs; deploy runs on pushes or merges to `main`.
