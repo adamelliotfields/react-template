@@ -27,6 +27,8 @@ jobs:
           cache-dependency-path: package-lock.json
       - name: Install
         run: npm ci
+      - name: Check
+        run: npm run check
       - name: Lint
         run: npm run lint
       - name: Test
@@ -34,7 +36,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist/
   deploy:
@@ -48,4 +50,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
