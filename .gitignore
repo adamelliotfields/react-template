@@ -1,5 +1,3 @@
-.claude/
 .DS_Store
 dist/
 node_modules/
-tmpclaude-*
