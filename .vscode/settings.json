@@ -1,5 +1,7 @@
 {
   "editor.rulers": [100],
+  "js/ts.experimental.useTsgo": true,
+  "npm.packageManager": "pnpm",
 
   // performance
   "files.exclude": {
@@ -15,23 +17,19 @@
   "editor.quickSuggestions": { "strings": "on" },
   "files.associations": { "*.css": "tailwindcss" },
 
-  // vitest
-  "vitest.shellType": "terminal",
-
   // biome
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "explicit",
-      "source.organizeImports.biome": "explicit"
+      "source.fixAll.biome": "explicit"
     }
   },
   "[json][jsonc]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "explicit"
+      "source.fixAll.biome": "explicit"
     }
   }
 }

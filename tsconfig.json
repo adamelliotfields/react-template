@@ -3,7 +3,7 @@
   "extends": ["@tsconfig/vite-react/tsconfig.json"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "types": ["*"],
     "paths": {
       "@/*": ["./src/*"]
     }
