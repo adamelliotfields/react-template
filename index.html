@@ -1,29 +1,32 @@
 <!doctype html>
-<html lang="en" class="h-full antialiased [font-synthesis:none] [text-rendering:optimizeLegibility]">
+<html
+  lang="en"
+  class="h-full antialiased [font-synthesis:none] [text-rendering:optimizeLegibility]"
+>
   <head>
     <title>React Template</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A starter kit for single page apps" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A starter kit for single page apps">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <script src="/theme.min.js"></script>
   </head>
   <body class="h-full text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-950">
     <div class="h-full flex flex-col" id="root"></div>
     <script>
-      // https://github.com/rafgraph/spa-github-pages
-                  ;(({ search, pathname, hash }, history) => {
-                    if (search[1] === '/') {
-                      const decoded = search
-                        .slice(1)
-                        .split('&')
-                        .map((s) => s.replace(/~and~/g, '&'))
-                        .join('?')
-                      history.replaceState(null, '', pathname.slice(0, -1) + decoded + hash)
-                    }
-                  })(window.location, window.history)
+    // https://github.com/rafgraph/spa-github-pages
+    ;(({ search, pathname, hash }, history) => {
+      if (search[1] === '/') {
+        const decoded = search
+          .slice(1)
+          .split('&')
+          .map((s) => s.replace(/~and~/g, '&'))
+          .join('?')
+        history.replaceState(null, '', pathname.slice(0, -1) + decoded + hash)
+      }
+    })(window.location, window.history)
     </script>
     <script src="./src/index.tsx" type="module"></script>
   </body>

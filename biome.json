@@ -8,6 +8,9 @@
     }
   },
   "css": {
+    "formatter": {
+      "enabled": true
+    },
     "parser": {
       "tailwindDirectives": true
     }
@@ -19,8 +22,14 @@
     "indentStyle": "space",
     "lineWidth": 100
   },
+  "html": {
+    "formatter": {
+      "enabled": true
+    }
+  },
   "javascript": {
     "formatter": {
+      "enabled": true,
       "quoteStyle": "single",
       "semicolons": "asNeeded",
       "trailingCommas": "none"

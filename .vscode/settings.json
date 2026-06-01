@@ -18,18 +18,16 @@
   "files.associations": { "*.css": "tailwindcss" },
 
   // biome
+  "[css][html][json][jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",
     "editor.codeActionsOnSave": {
-      "source.fixAll.biome": "explicit"
-    }
-  },
-  "[json][jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.biome": "explicit"
+      "source.fixAll.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
     }
   }
 }
