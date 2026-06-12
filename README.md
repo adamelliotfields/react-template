@@ -9,7 +9,6 @@ A template for React single page apps.
 
 - [**Tailwind**](https://github.com/tailwindlabs/tailwindcss)
 - [**shadcn**](https://github.com/shadcn-ui/ui)
-- [**Motion**](https://github.com/framer/motion)
 - [**Wouter**](https://github.com/molefrog/wouter)
 - [**Vitest**](https://github.com/vitest-dev/vitest)
 - [**Biome**](https://github.com/biomejs/biome)

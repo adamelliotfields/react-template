@@ -17,7 +17,7 @@ Before React is hydrated, a minified [`theme.js`](./public/theme.js) checks loca
 
 ## Demo App
 
-The demo app in [`Demo.tsx`](./src/components/Demo.tsx) should be used as a starting point for most projects. It is a familiar collapsible sidebar layout with breadcrumb links, Cmd+K command palette, a table with sorting and pagination, and the theme toggle.
+The demo app in [`Demo.tsx`](./src/components/Demo.tsx) should be used as a starting point for most projects. It is a familiar collapsible sidebar layout with breadcrumb links, Cmd+K command palette, and the theme toggle.
 
 Use the demo as a reference, but break it up into components to meet the needs of the app you're building and update this `AGENTS.md` file accordingly.
 

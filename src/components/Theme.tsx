@@ -1,6 +1,7 @@
 import { type ElementType, useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 type ThemeName = 'light' | 'dark' | 'system'
 
@@ -45,7 +46,7 @@ export default function Theme({ themes, collapsed = false }: ThemeProps) {
         type="button"
         variant="ghost"
         size="icon-sm"
-        className="h-8 w-full"
+        className="mx-auto size-8"
         onClick={cycleTheme}
         aria-label="Cycle theme"
       >
@@ -56,7 +57,7 @@ export default function Theme({ themes, collapsed = false }: ThemeProps) {
 
   // Show a button group when expanded.
   return (
-    <div className="grid grid-cols-3 gap-1 rounded-xl border bg-background/80 p-1">
+    <div className="grid grid-cols-3 gap-0 rounded-xl">
       {themes.map((theme) => {
         const { name, icon: Icon } = theme
         const isSelected = selectedTheme?.name === name
@@ -64,9 +65,12 @@ export default function Theme({ themes, collapsed = false }: ThemeProps) {
           <Button
             key={name}
             type="button"
-            variant={isSelected ? 'secondary' : 'ghost'}
+            variant="ghost"
             size="icon-sm"
-            className="h-8 w-full"
+            className={cn(
+              'mx-auto size-8 bg-transparent hover:text-foreground',
+              isSelected && 'text-foreground'
+            )}
             onClick={() => setSelectedTheme(theme)}
             aria-label={`Set ${name} theme`}
             aria-pressed={isSelected}
