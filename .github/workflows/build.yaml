@@ -1,11 +1,12 @@
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: build
 
 on:
-  workflow_dispatch: {}
   push:
     branches: ['main']
   pull_request:
     branches: ['**']
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -18,11 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
       - name: Setup
-        uses: actions/setup-node@v6.3.0
+        uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version: 26
           cache: npm
           cache-dependency-path: package-lock.json
       - name: Install
@@ -35,10 +36,11 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
-      - name: Artifact
-        uses: actions/upload-pages-artifact@v5.0.0
+      - name: Upload
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: ./dist/
+          path: ./dist
+
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -49,5 +51,5 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5
         id: deployment
-        uses: actions/deploy-pages@v5.0.0
