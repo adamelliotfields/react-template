@@ -1,7 +1,7 @@
 {
   "editor.rulers": [100],
   "js/ts.experimental.useTsgo": true,
-  "npm.packageManager": "pnpm",
+  "js/ts.tsdk.path": "node_modules/@typescript/native-preview",
 
   // performance
   "files.exclude": {
@@ -16,12 +16,9 @@
   // tailwind
   "editor.quickSuggestions": { "strings": "on" },
   "files.associations": { "*.css": "tailwindcss" },
+  "tailwindCSS.classAttributes": ["class", "className"],
 
   // biome
-  "[css][html][json][jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome"
-  },
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",
@@ -29,5 +26,9 @@
       "source.fixAll.biome": "explicit",
       "source.organizeImports.biome": "explicit"
     }
+  },
+  "[html][json][jsonc][tailwindcss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }
