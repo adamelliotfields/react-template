@@ -175,9 +175,9 @@ function EditableText({
       data-block-id={block.id}
       data-placeholder={placeholder}
       className={cn(
-        'min-h-[1.5em] w-full outline-none whitespace-pre-wrap wrap-break-word',
+        'wrap-break-word min-h-[1.5em] w-full whitespace-pre-wrap outline-none',
         '[&_b]:font-semibold [&_strong]:font-semibold',
-        'empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground/50',
+        'empty:before:text-muted-foreground/50 empty:before:content-[attr(data-placeholder)]',
         className
       )}
       onInput={(e) => onChange(e.currentTarget.textContent ?? '', e.currentTarget.innerHTML ?? '')}
@@ -210,7 +210,7 @@ function SlashMenu({ query, position, onSelect, onClose, selectedIndex }: SlashM
       className="absolute z-50 w-64 rounded-lg border bg-popover p-1 text-popover-foreground shadow-md"
       style={{ top: position.top, left: position.left }}
     >
-      <p className="px-2 py-1.5 text-xs font-medium text-muted-foreground">Turn into</p>
+      <p className="px-2 py-1.5 font-medium text-muted-foreground text-xs">Turn into</p>
       {items.map((item, i) => (
         <button
           key={item.type}
@@ -228,7 +228,7 @@ function SlashMenu({ query, position, onSelect, onClose, selectedIndex }: SlashM
         >
           <item.icon className="h-4 w-4 shrink-0 text-muted-foreground" />
           <span className="flex-1">{item.label}</span>
-          <span className="text-xs text-muted-foreground">{item.hint}</span>
+          <span className="text-muted-foreground text-xs">{item.hint}</span>
         </button>
       ))}
     </div>
@@ -559,13 +559,13 @@ function Editor({ page, onChangePage }: EditorProps) {
           }
         }}
         placeholder="Untitled"
-        className="w-full bg-transparent text-4xl font-bold tracking-tight outline-none placeholder:text-muted-foreground/40"
+        className="w-full bg-transparent font-bold text-4xl tracking-tight outline-none placeholder:text-muted-foreground/40"
       />
       <div className="mt-6 space-y-1">
         {page.blocks.map((block) => (
           <div
             key={block.id}
-            className="group flex items-start gap-2 rounded-sm px-1 py-0.5 -mx-1 hover:bg-muted/40"
+            className="group -mx-1 flex items-start gap-2 rounded-sm px-1 py-0.5 hover:bg-muted/40"
           >
             {block.type === 'todo' && (
               <span className="flex h-7 shrink-0 items-center">
@@ -691,7 +691,7 @@ function CommandPalette({ open, onOpenChange, pages, onSelectPage }: CommandPale
       aria-label="Command palette"
     >
       <div
-        className="absolute left-1/2 top-1/3 w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-xl border bg-popover p-1 text-popover-foreground shadow-lg"
+        className="absolute top-1/3 left-1/2 w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-xl border bg-popover p-1 text-popover-foreground shadow-lg"
         onMouseDown={(e) => e.stopPropagation()}
         role="document"
       >
@@ -708,10 +708,10 @@ function CommandPalette({ open, onOpenChange, pages, onSelectPage }: CommandPale
         </div>
         <div className="max-h-72 overflow-y-auto p-1">
           {results.length === 0 ? (
-            <p className="py-6 text-center text-sm text-muted-foreground">No results found.</p>
+            <p className="py-6 text-center text-muted-foreground text-sm">No results found.</p>
           ) : (
             <>
-              <p className="px-2 py-1.5 text-xs font-medium text-muted-foreground">Pages</p>
+              <p className="px-2 py-1.5 font-medium text-muted-foreground text-xs">Pages</p>
               {results.map((page, i) => (
                 <button
                   key={page.id}
@@ -792,7 +792,7 @@ export default function NotesDemo() {
     <div className="flex h-screen overflow-hidden bg-background text-foreground">
       <aside className="flex w-60 shrink-0 flex-col border-r bg-muted/30">
         <div className="flex h-12 items-center justify-between border-b px-3">
-          <span className="text-sm font-semibold">Notes</span>
+          <span className="font-semibold text-sm">Notes</span>
           <Button
             variant="ghost"
             size="icon"
@@ -825,7 +825,7 @@ export default function NotesDemo() {
                   <FileText className="h-4 w-4 shrink-0" />
                   <span className="flex-1 truncate">{page.title || 'Untitled'}</span>
                   {stats && (
-                    <span className="text-xs tabular-nums text-muted-foreground">{stats}</span>
+                    <span className="text-muted-foreground text-xs tabular-nums">{stats}</span>
                   )}
                 </button>
                 {pages.length > 1 && (
@@ -845,7 +845,7 @@ export default function NotesDemo() {
         <Separator />
         <button
           type="button"
-          className="flex items-center gap-2 px-4 py-3 text-sm text-muted-foreground hover:text-foreground"
+          className="flex items-center gap-2 px-4 py-3 text-muted-foreground text-sm hover:text-foreground"
           onClick={() => setPaletteOpen(true)}
         >
           <Search className="h-4 w-4" />
@@ -854,7 +854,7 @@ export default function NotesDemo() {
         </button>
       </aside>
       <main className="flex-1 overflow-y-auto">
-        <div className="flex h-12 items-center gap-1 border-b px-4 text-sm text-muted-foreground">
+        <div className="flex h-12 items-center gap-1 border-b px-4 text-muted-foreground text-sm">
           <span>Notes</span>
           <ChevronRight className="h-3 w-3" />
           <span className="text-foreground">{activePage.title || 'Untitled'}</span>

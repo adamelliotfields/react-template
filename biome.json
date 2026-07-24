@@ -37,7 +37,7 @@
   },
   "linter": {
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "a11y": {
         "noSvgWithoutTitle": "off"
       },
@@ -48,12 +48,14 @@
         "noUndeclaredVariables": "error",
         "noUnusedVariables": "error"
       },
-      "style": {
-        "useNumberNamespace": "off"
+      "nursery": {
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe"
+        }
       },
       "suspicious": {
-        "noArrayIndexKey": "off",
-        "noGlobalIsNan": "off"
+        "noArrayIndexKey": "off"
       }
     }
   },
