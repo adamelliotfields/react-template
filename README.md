@@ -1,8 +1,5 @@
 # react-template
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/adamelliotfields/react-template?machine=basicLinux32gb)
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://pr.new/adamelliotfields/react-template)
-
 A template for React single page apps.
 
 ## Features
@@ -31,13 +28,11 @@ Single pages apps require all routes to respond with `index.html`. That's the _s
 
 GitHub Pages doesn't do this for you, but they do support a custom `404.html` page. The [spa-github-pages](https://github.com/rafgraph/spa-github-pages) technique exploits this to redirect back to `index.html` for all routes.
 
-In [`404.html`](./public/404.html), the `PATH_SEGMENTS` variable is set to `1`. This means if your app is hosted at `you.github.io/your-app`, the base path will be `/your-app`, which is what you want.
+Set `BASE_PATH` in both [`404.html`](./public/404.html) and [`vite.config.ts`](./vite.config.ts) to the pathname where the app is deployed. For example, use `/react-template` when deploying this template to `you.github.io/react-template`.
 
-If this is your root `github.io` page or you're using a custom domain, set `PATH_SEGMENTS` to `0` so the base path will be `/`.
+If this is your root `github.io` page or you're using a custom domain, set `BASE_PATH` to `/` in both files.
 
-You also need to change `BASE_URL` in [`vite.config.ts`](./vite.config.ts) to match.
-
-If you're not using GitHub Pages, you or your agent can remove this.
+If you're not using GitHub Pages, you can remove this.
 
 ## Dark Mode
 
@@ -46,3 +41,23 @@ See [`theme.js`](./public/theme.js) and [`Theme.tsx`](./src/components/Theme.tsx
 ## CI/CD
 
 See [`build.yaml`](./.github/workflows/build.yaml). Build runs on all PRs; deploy runs on pushes or merges to `main`.
+
+## Remote Development
+
+VS Code automatically detects ports opened on a remote machine. Its remote extension scans `/proc/net/{tcp,tcp6}`, looks for sockets in the `LISTEN` state, and forwards these ports over SSH.
+
+Zed does not automatically discover listening ports this way. Add the following to your main Zed settings file, replacing the host with your own, to forward Vite's preview and development ports:
+
+```json
+{
+  "ssh_connections": [
+    {
+      "host": "your-remote-host",
+      "port_forwards": [
+        { "local_port": 4173, "remote_port": 4173 },
+        { "local_port": 5173, "remote_port": 5173 }
+      ]
+    }
+  ]
+}
+```

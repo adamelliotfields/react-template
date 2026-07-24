@@ -9,7 +9,13 @@ This is a template repository for React single page applications with Vite, Type
 - `src/lib` - Utility functions.
 - `src/lib/utils.ts` - shadcn/ui utility functions.
 - `src/hooks` - React hooks.
-- `test` - All tests.
+- `test` - Unit tests.
+
+## Routing
+
+GitHub Pages routing uses the [spa-github-pages](https://github.com/rafgraph/spa-github-pages) technique in [`public/404.html`](./public/404.html). Keep `BASE_PATH` in that file in sync with `BASE_PATH` in [`vite.config.ts`](./vite.config.ts). Use the repository path, such as `/react-template`, when the app is hosted at `you.github.io/react-template`, or use `/` for a root `github.io` page or custom domain.
+
+If the app is not deployed to GitHub Pages, this routing setup can be removed.
 
 ## Dark Mode
 
@@ -21,13 +27,7 @@ The demo app in [`Demo.tsx`](./src/components/Demo.tsx) should be used as a star
 
 Use the demo as a reference, but break it up into components to meet the needs of the app you're building and update this `AGENTS.md` file accordingly.
 
-## Development
-
-Use `pnpm` locally.
-
-NPM is only used in CI. After updating packages, run `npm i --package-lock-only` to sync the lock file.
-
-### Formatting
+## Formatting
 
 Use StandardJS style:
 
@@ -44,20 +44,22 @@ objectWrap: preserve
 arrowParens: always
 ```
 
-### TypeScript
+## TypeScript
 
-Run `pnpm check` or `tsgo --noEmit --incremental` to check types.
+Run `npm run check` or `tsgo -p .` to check types.
 
-### Linting
+## Linting
 
-Run `pnpm lint:fix` or `biome check --fix` to check and fix linting issues.
+Run `npm run lint:fix` or `biome check --fix .` to check and fix linting issues.
 
-### Testing
+## Testing
 
-Run `pnpm test`.
+Run `npm test`.
 
-Use `vitest` with `act` from `react`. Use [`theme.test.tsx`](./test/theme.test.tsx) as a reference when writing component unit tests.
+Use `vitest` with `happy-dom`. Prefer React's `act` and `createRoot` with plain DOM queries.
 
-### Building
+Use [`theme.test.tsx`](./test/theme.test.tsx) as a reference when writing component unit tests.
 
-Never run `pnpm start` or `pnpm build` unless explicitly asked. Assume continuous builds are happening in the background. You'll be notified of any errors.
+## Building
+
+Never run `npm start`, `npm run build`, or `npm run preview`. Assume the dev server is already running.
