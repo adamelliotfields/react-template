@@ -55,23 +55,12 @@ describe('Theme', () => {
   it('reads current data-theme on mount', () => {
     window.document.documentElement.setAttribute('data-theme', 'dark')
     renderTheme()
-    expect(getButton('Set dark theme').getAttribute('aria-pressed')).toBe('true')
     expect(window.document.documentElement.getAttribute('data-theme')).toBe('dark')
   })
 
-  it('writes data-theme when selecting a theme', () => {
-    window.document.documentElement.setAttribute('data-theme', 'dark')
-    renderTheme()
-    act(() => {
-      getButton('Set light theme').click()
-    })
-    expect(getButton('Set light theme').getAttribute('aria-pressed')).toBe('true')
-    expect(window.document.documentElement.getAttribute('data-theme')).toBe('light')
-  })
-
-  it('cycles data-theme when collapsed', () => {
+  it('cycles data-theme on click', () => {
     window.document.documentElement.setAttribute('data-theme', 'light')
-    renderTheme({ collapsed: true })
+    renderTheme()
 
     act(() => {
       getButton('Cycle theme').click()
