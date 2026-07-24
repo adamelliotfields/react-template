@@ -8,6 +8,8 @@ import {
   List,
   Monitor,
   Moon,
+  PanelLeftClose,
+  PanelLeftOpen,
   Plus,
   Search,
   Sun,
@@ -744,6 +746,7 @@ export default function NotesDemo() {
   const [pages, setPages] = useState(seedPages)
   const [activeId, setActiveId] = useState(seedPages[0].id)
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const activePage = useMemo(
     () => pages.find((p) => p.id === activeId) ?? pages[0],
@@ -790,17 +793,22 @@ export default function NotesDemo() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-background text-foreground">
-      <aside className="flex w-60 shrink-0 flex-col border-r bg-muted/30">
-        <div className="flex h-12 items-center justify-between border-b px-3">
+      <aside
+        className={cn(
+          'flex shrink-0 flex-col border-r bg-muted/30',
+          sidebarOpen ? 'w-60' : 'w-0 overflow-hidden border-r-0'
+        )}
+      >
+        <div className="flex h-12 w-60 items-center justify-between border-b px-3">
           <span className="font-semibold text-sm">Notes</span>
           <Button
             variant="ghost"
             size="icon"
             className="h-7 w-7"
-            onClick={addPage}
-            title="New page"
+            onClick={() => setSidebarOpen(false)}
+            title="Collapse sidebar"
           >
-            <Plus className="h-4 w-4" />
+            <PanelLeftClose className="h-4 w-4" />
           </Button>
         </div>
         <nav className="flex-1 overflow-y-auto p-2">
@@ -855,10 +863,25 @@ export default function NotesDemo() {
       </aside>
       <main className="flex-1 overflow-y-auto">
         <div className="flex h-12 items-center gap-1 border-b px-4 text-muted-foreground text-sm">
+          {!sidebarOpen && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="mr-1 -ml-2 h-7 w-7"
+              onClick={() => setSidebarOpen(true)}
+              title="Expand sidebar"
+            >
+              <PanelLeftOpen className="h-4 w-4" />
+            </Button>
+          )}
           <span>Notes</span>
           <ChevronRight className="h-3 w-3" />
           <span className="text-foreground">{activePage.title || 'Untitled'}</span>
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center gap-2">
+            <Button size="sm" onClick={addPage} title="New note">
+              <Plus className="h-4 w-4" />
+              New note
+            </Button>
             <Theme themes={THEMES} />
           </div>
         </div>
