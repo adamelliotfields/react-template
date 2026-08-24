@@ -14,7 +14,7 @@ A template for React single page apps.
 
 ```sh
 # clone
-npx degit adamelliotfields/react-template my-app
+npx degit 0xfieldsy/react-template my-app
 cd my-app
 
 # start
