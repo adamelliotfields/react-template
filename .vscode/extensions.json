@@ -1,9 +1,4 @@
 {
-  "recommendations": [
-    "biomejs.biome",
-    "bradlc.vscode-tailwindcss",
-    "redhat.vscode-yaml",
-    "typescriptteam.native-preview"
-  ],
+  "recommendations": ["biomejs.biome", "bradlc.vscode-tailwindcss", "redhat.vscode-yaml"],
   "unwantedRecommendations": []
 }
