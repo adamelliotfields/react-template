@@ -13,12 +13,15 @@ export default defineConfig(({ mode }) => {
     build: { target: 'esnext' },
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src')
+        '@': resolve(import.meta.dirname, './src')
       }
     },
     plugins: mode === 'test' ? [] : [react(), tailwind()],
     test: {
-      environment: 'happy-dom'
+      environment: 'happy-dom',
+      coverage: {
+        reporter: ['text']
+      }
     }
   }
 })
