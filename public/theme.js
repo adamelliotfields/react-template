@@ -1,4 +1,7 @@
 ;(({ localStorage, matchMedia }, { documentElement }) => {
+  const DARK_THEME_COLOR = '#0a0a0a' // oklch(0.145 0 0)
+  const LIGHT_THEME_COLOR = '#ffffff' // oklch(1 0 0)
+
   class ThemeController {
     media = matchMedia('(prefers-color-scheme: dark)')
 
@@ -30,6 +33,10 @@
       this.theme = ['dark', 'light', 'system'].includes(theme) ? theme : 'system'
       documentElement.classList.toggle('dark', this.isDark)
       documentElement.setAttribute('data-theme', this.theme)
+      documentElement.querySelector('meta[name="theme-color"]')?.setAttribute(
+        'content',
+        this.isDark ? DARK_THEME_COLOR : LIGHT_THEME_COLOR
+      )
       documentElement.classList.add('**:transition-none!')
       setTimeout(() => documentElement.classList.remove('**:transition-none!'), 0)
     }
