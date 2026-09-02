@@ -41,23 +41,3 @@ See [`theme.js`](./public/theme.js) and [`Theme.tsx`](./src/components/Theme.tsx
 ## CI/CD
 
 See [`build.yaml`](./.github/workflows/build.yaml). Build runs on all PRs; deploy runs on pushes or merges to `main`.
-
-## Remote Development
-
-VS Code automatically detects ports opened on a remote machine. Its remote extension scans `/proc/net/{tcp,tcp6}`, looks for sockets in the `LISTEN` state, and forwards these ports over SSH.
-
-Zed does not automatically discover listening ports this way. Add the following to your main Zed settings file, replacing the host with your own, to forward Vite's preview and development ports:
-
-```json
-{
-  "ssh_connections": [
-    {
-      "host": "your-remote-host",
-      "port_forwards": [
-        { "local_port": 4173, "remote_port": 4173 },
-        { "local_port": 5173, "remote_port": 5173 }
-      ]
-    }
-  ]
-}
-```
